@@ -110,17 +110,20 @@ export default function SettingsPage() {
         }
       );
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error details:', error);
+        throw new Error(error.message || 'Database error');
+      }
 
       toast({
         title: 'Settings saved',
         description: 'Your settings have been updated successfully.',
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save settings:', error);
       toast({
         title: 'Error',
-        description: 'Failed to save settings. Please try again.',
+        description: error.message || 'Failed to save settings. Please try again.',
         variant: 'destructive',
       });
     } finally {
