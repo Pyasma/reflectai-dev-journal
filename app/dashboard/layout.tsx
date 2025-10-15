@@ -10,6 +10,7 @@ import {
   PlusCircle,
   LogOut,
 } from 'lucide-react';
+import { Footer } from '@/components/layout/Footer';
 
 export default async function DashboardLayout({
   children,
@@ -40,15 +41,15 @@ export default async function DashboardLayout({
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* Top Navigation */}
-      <header className="border-b bg-card">
+      <header className="border-b border-[rgba(167,139,250,0.2)] dark:bg-card/50 bg-white/50 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <BookOpen className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">ReflectAI</span>
+              <span className="text-xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">ReflectAI</span>
             </Link>
 
             {/* Navigation Links */}
@@ -90,7 +91,7 @@ export default async function DashboardLayout({
                   <img
                     src={profile.github_avatar_url}
                     alt={profile.github_username || 'User'}
-                    className="h-8 w-8 rounded-full border-2 border-primary hover:opacity-80 transition-opacity"
+                    className="h-8 w-8 rounded-full border-2 border-primary ring-2 ring-[rgba(167,139,250,0.3)] hover:ring-[rgba(167,139,250,0.5)] hover:opacity-80 transition-all duration-300"
                     title="View Profile"
                   />
                 </Link>
@@ -101,7 +102,8 @@ export default async function DashboardLayout({
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">{children}</main>
+      <main className="container mx-auto px-4 py-8 flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }
