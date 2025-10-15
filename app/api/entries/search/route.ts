@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch repository data for each result
     const enrichedResults = await Promise.all(
-      (data || []).map(async (entry: Record<string, any>) => {
+      (data || []).map(async (entry: Record<string, unknown>) => {
         const { data: repo } = await supabase
           .from('repositories')
           .select('name, full_name, language')
