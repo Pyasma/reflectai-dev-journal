@@ -23,9 +23,8 @@ CREATE TABLE public.user_settings (
   gemini_model_preference TEXT NOT NULL DEFAULT 'gemini-2.0-flash-exp' CHECK (
     gemini_model_preference IN (
       'gemini-2.0-flash-exp',
-      'gemini-1.5-pro',
-      'gemini-1.5-flash',
-      'gemini-1.5-flash-8b'
+      'gemini-2.5-flash',
+      'gemini-2.5-pro'
     )
   ),
   custom_system_prompt TEXT,
