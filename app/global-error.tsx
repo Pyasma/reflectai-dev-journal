@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/navigation'
+import Link from 'next/link'
 
 export default function GlobalError({
   error,
