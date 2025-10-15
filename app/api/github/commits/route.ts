@@ -68,10 +68,10 @@ export async function GET(request: NextRequest) {
       commits: formattedCommits,
       count: formattedCommits.length,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Fetch commits error:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to fetch commits' },
+      { error: error instanceof Error ? error.message : 'Failed to fetch commits' },
       { status: 500 }
     );
   }
