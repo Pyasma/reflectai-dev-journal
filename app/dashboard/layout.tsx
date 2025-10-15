@@ -86,11 +86,14 @@ export default async function DashboardLayout({
                 </Button>
               </form>
               {profile?.github_avatar_url && (
-                <img
-                  src={profile.github_avatar_url}
-                  alt={profile.github_username || 'User'}
-                  className="h-8 w-8 rounded-full border-2 border-primary"
-                />
+                <Link href="/profile" className="cursor-pointer">
+                  <img
+                    src={profile.github_avatar_url}
+                    alt={profile.github_username || 'User'}
+                    className="h-8 w-8 rounded-full border-2 border-primary hover:opacity-80 transition-opacity"
+                    title="View Profile"
+                  />
+                </Link>
               )}
             </div>
           </div>
