@@ -203,11 +203,11 @@ export default function EditEntryPage() {
         title: 'Success',
         description: 'AI summary regenerated successfully',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to regenerate summary:', error);
       toast({
         title: 'Error',
-        description: error.message || 'Failed to regenerate summary',
+        description: error instanceof Error ? error.message : 'Failed to regenerate summary',
         variant: 'destructive',
       });
     } finally {
