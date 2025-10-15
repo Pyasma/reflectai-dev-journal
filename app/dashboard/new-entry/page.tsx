@@ -219,11 +219,11 @@ export default function NewEntryPage() {
         title: 'Success',
         description: 'AI summary generated successfully',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to generate summary:', error);
       toast({
         title: 'Error',
-        description: error.message || 'Failed to generate summary',
+        description: error instanceof Error ? error.message : 'Failed to generate summary',
         variant: 'destructive',
       });
     } finally {
