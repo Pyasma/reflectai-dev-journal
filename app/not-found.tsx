@@ -144,7 +144,7 @@ export default function NotFound() {
           <div className="error-box">
             <div className="error-display">Error 404</div>
             <div className="error-message">
-              <div>// Route not found in application</div>
+              <div>{'// Route not found in application'}</div>
               <div>❌ The requested page does not exist</div>
               <div>📍 Check the URL or return to home</div>
             </div>
