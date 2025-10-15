@@ -26,7 +26,7 @@ export default function LandingPage() {
 
     try {
       const supabase = createClient();
-      const { data, error: signInError } = await supabase.auth.signInWithOAuth({
+      const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
@@ -38,7 +38,7 @@ export default function LandingPage() {
         setError('Failed to initiate GitHub login. Please try again.');
         setIsLoading(false);
       }
-    } catch (err) {
+    } catch (_err) {
       setError('An unexpected error occurred. Please try again.');
       setIsLoading(false);
     }
