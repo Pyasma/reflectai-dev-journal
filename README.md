@@ -146,7 +146,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Customizing AI Behavior
 
 Go to Settings to:
-- Choose your preferred Gemini model (Pro, Flash, Flash-8B, or Experimental)
+- Choose your preferred Gemini model (2.0 Flash Experimental, 2.5 Flash, or 2.5 Pro)
 - Customize the system prompt for AI generation
 - Update your API key
 
@@ -220,10 +220,9 @@ reflectai-dev-journal/
 ## API Rate Limits
 
 ### Gemini API (Free Tier)
-- **2.0 Flash Experimental**: Best for testing, variable limits
-- **1.5 Flash**: 10 requests/minute, 250 requests/day
-- **1.5 Flash-8B**: 15 requests/minute, 1,000 requests/day
-- **1.5 Pro**: 5 requests/minute, 100 requests/day
+- **2.0 Flash Experimental**: Latest experimental model - fastest and most capable (Recommended)
+- **2.5 Flash**: Advanced model with balanced speed and capability
+- **2.5 Pro**: Most advanced model for complex reasoning and detailed analysis
 
 ### GitHub API
 - Authenticated: 5,000 requests/hour
