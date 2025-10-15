@@ -1,6 +1,14 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import {
   BookOpen,
@@ -9,7 +17,9 @@ import {
   TrendingUp,
   PlusCircle,
   LogOut,
+  User,
 } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
 
 export default async function DashboardLayout({
   children,
@@ -75,23 +85,52 @@ export default async function DashboardLayout({
 
             {/* User Menu */}
             <div className="flex items-center gap-3">
-              <Link href="/settings">
-                <Button variant="ghost" size="icon">
-                  <Settings className="h-5 w-5" />
-                </Button>
-              </Link>
-              <form action={handleSignOut}>
-                <Button variant="ghost" size="icon" type="submit">
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </form>
-              {profile?.github_avatar_url && (
-                <img
-                  src={profile.github_avatar_url}
-                  alt={profile.github_username || 'User'}
-                  className="h-8 w-8 rounded-full border-2 border-primary"
-                />
-              )}
+              <ThemeToggle />
+              
+              {/* Profile Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0">
+                    {profile?.github_avatar_url ? (
+                      <img
+                        src={profile.github_avatar_url}
+                        alt={profile.github_username || 'User'}
+                        className="h-10 w-10 rounded-full border-2 border-primary"
+                      />
+                    ) : (
+                      <User className="h-5 w-5" />
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">
+                        {profile?.github_username || 'User'}
+                      </p>
+                      <p className="text-xs leading-none text-muted-foreground">
+                        {user.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/settings" className="cursor-pointer">
+                      <Settings className="mr-2 h-4 w-4" />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <form action={handleSignOut} className="w-full">
+                      <button type="submit" className="flex w-full items-center cursor-pointer">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Sign out
+                      </button>
+                    </form>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
