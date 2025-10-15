@@ -273,7 +273,10 @@ export default function NewEntryPage() {
         .select()
         .single();
 
-      if (entryError) throw entryError;
+      if (entryError) {
+        console.error('Entry insert error:', entryError);
+        throw new Error(entryError.message || 'Failed to save entry');
+      }
 
       // Insert entry commits
       if (commits.length > 0 && entry) {
@@ -301,11 +304,11 @@ export default function NewEntryPage() {
 
       // Redirect to dashboard
       router.push('/dashboard');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save entry:', error);
       toast({
         title: 'Error',
-        description: 'Failed to save journal entry',
+        description: error.message || 'Failed to save journal entry. Please check console for details.',
         variant: 'destructive',
       });
     } finally {
