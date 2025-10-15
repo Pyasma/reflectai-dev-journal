@@ -216,37 +216,25 @@ export default function SettingsPage() {
               </div>
 
               <div className="flex items-start space-x-3 rounded-lg border p-4">
-                <RadioGroupItem value="gemini-1.5-flash" id="flash" />
+                <RadioGroupItem value="gemini-2.5-flash" id="2-5-flash" />
                 <div className="flex-1">
-                  <Label htmlFor="flash" className="font-semibold cursor-pointer">
-                    Gemini 1.5 Flash
+                  <Label htmlFor="2-5-flash" className="font-semibold cursor-pointer">
+                    Gemini 2.5 Flash
                   </Label>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Balanced performance and speed - 10 RPM, 250 requests/day
+                    Advanced 2.5 model - balanced speed and capability
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3 rounded-lg border p-4">
-                <RadioGroupItem value="gemini-1.5-flash-8b" id="flash-lite" />
+                <RadioGroupItem value="gemini-2.5-pro" id="2-5-pro" />
                 <div className="flex-1">
-                  <Label htmlFor="flash-lite" className="font-semibold cursor-pointer">
-                    Gemini 1.5 Flash-8B
+                  <Label htmlFor="2-5-pro" className="font-semibold cursor-pointer">
+                    Gemini 2.5 Pro
                   </Label>
                   <p className="text-sm text-muted-foreground mt-1">
-                    High-frequency queries - 15 RPM, 1,000 requests/day
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3 rounded-lg border p-4">
-                <RadioGroupItem value="gemini-1.5-pro" id="pro" />
-                <div className="flex-1">
-                  <Label htmlFor="pro" className="font-semibold cursor-pointer">
-                    Gemini 1.5 Pro
-                  </Label>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Complex reasoning - 5 RPM, 100 requests/day (slower but more detailed)
+                    Most advanced model - complex reasoning and detailed analysis
                   </p>
                 </div>
               </div>
