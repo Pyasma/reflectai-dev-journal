@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Card, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlusCircle, BookOpen } from 'lucide-react';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ export default async function DashboardPage() {
   }
 
   // Fetch journal entries with repository data
-  const { data: entries, error } = await supabase
+  const { data: entries } = await supabase
     .from('journal_entries')
     .select(`
       *,
