@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createClient } from '@/lib/supabase/client';
 import { Github, BookOpen, Sparkles, TrendingUp, AlertCircle } from 'lucide-react';
 
-export default function LandingPage() {
+function LandingPageContent() {
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -131,5 +131,13 @@ export default function LandingPage() {
         </footer>
       </div>
     </div>
+  );
+}
+
+export default function LandingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LandingPageContent />
+    </Suspense>
   );
 }
