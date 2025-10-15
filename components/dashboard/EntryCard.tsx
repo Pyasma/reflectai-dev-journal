@@ -33,7 +33,7 @@ export function EntryCard({ entry }: EntryCardProps) {
   const sessionDate = new Date(entry.session_date);
 
   return (
-    <Card className="hover:shadow-lg transition-shadow">
+    <Card className="hover:shadow-xl dark:hover:glow-outline hover:-translate-y-1 transition-all duration-350">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
