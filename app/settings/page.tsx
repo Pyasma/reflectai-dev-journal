@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Save, Key, Sparkles, Code } from 'lucide-react';
+import { Loader2, Save, Key, Sparkles, Code, Trash2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const DEFAULT_SYSTEM_PROMPT = `You are an expert technical writer helping developers document their coding sessions.
@@ -43,6 +43,7 @@ export default function SettingsPage() {
   const [customPrompt, setCustomPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { toast } = useToast();
   const supabase = createClient();
 
@@ -135,6 +136,58 @@ export default function SettingsPage() {
     setCustomPrompt(DEFAULT_SYSTEM_PROMPT);
   };
 
+  const deleteApiKey = async () => {
+    if (!geminiApiKey) {
+      toast({
+        title: 'No API key',
+        description: 'There is no API key to delete',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsDeleting(true);
+
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        throw new Error('Not authenticated');
+      }
+
+      const { error } = await supabase
+        .from('user_settings')
+        .update({
+          gemini_api_key: null,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('user_id', user.id);
+
+      if (error) {
+        console.error('Supabase error details:', error);
+        throw new Error(error.message || 'Database error');
+      }
+
+      setGeminiApiKey('');
+      
+      toast({
+        title: 'API key deleted',
+        description: 'Your Gemini API key has been removed successfully.',
+      });
+    } catch (error: any) {
+      console.error('Failed to delete API key:', error);
+      toast({
+        title: 'Error',
+        description: error.message || 'Failed to delete API key. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -175,13 +228,29 @@ export default function SettingsPage() {
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="apiKey">API Key</Label>
-            <Input
-              id="apiKey"
-              type="password"
-              placeholder="Enter your Gemini API key"
-              value={geminiApiKey}
-              onChange={(e) => setGeminiApiKey(e.target.value)}
-            />
+            <div className="flex gap-2">
+              <Input
+                id="apiKey"
+                type="password"
+                placeholder="Enter your Gemini API key"
+                value={geminiApiKey}
+                onChange={(e) => setGeminiApiKey(e.target.value)}
+                className="flex-1"
+              />
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={deleteApiKey}
+                disabled={isDeleting || !geminiApiKey}
+                title="Delete API Key"
+              >
+                {isDeleting ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Trash2 className="h-4 w-4 text-destructive" />
+                )}
+              </Button>
+            </div>
             <p className="text-xs text-muted-foreground">
               Your API key is stored securely and never shared
             </p>
