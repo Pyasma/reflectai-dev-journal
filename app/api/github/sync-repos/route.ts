@@ -70,10 +70,10 @@ export async function POST() {
       count: data?.length || 0,
       repositories: data,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Sync repositories error:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to sync repositories' },
+      { error: error instanceof Error ? error.message : 'Failed to sync repositories' },
       { status: 500 }
     );
   }
