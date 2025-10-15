@@ -89,7 +89,7 @@ export function EntryCard({ entry }: EntryCardProps) {
             <span>View full entry</span>
           </div>
           <div className="flex gap-2">
-            <Link href={`/dashboard/${entry.repositories.name}/${entry.id}`}>
+            <Link href={`/dashboard/edit/${entry.id}`}>
               <Button variant="outline" size="sm">
                 <Edit className="h-4 w-4 mr-1" />
                 Edit
