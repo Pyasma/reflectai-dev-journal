@@ -1,61 +1,64 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 98%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 271 81% 56%;
+    --background: 0 0% 98%; /* #FAFAFA */
+    --foreground: 0 0% 10%; /* #1A1A1A */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 262 83% 75%; /* #A78BFA */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 220 13% 91%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 262 83% 75%;
+    --accent-foreground: 0 0% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 271 81% 56%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 83% 75%;
     --radius: 0.5rem;
-    --chart-1: 271 81% 56%;
-    --chart-2: 280 80% 65%;
-    --chart-3: 260 75% 70%;
-    --chart-4: 290 70% 60%;
-    --chart-5: 265 85% 50%;
+    --chart-1: 262 83% 75%;
+    --chart-2: 262 83% 80%;
+    --chart-3: 262 83% 70%;
+    --chart-4: 262 83% 85%;
+    --chart-5: 262 83% 65%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 271 81% 56%;
+    --background: 240 10% 5.5%; /* #0E0E11 */
+    --foreground: 0 0% 100%; /* Pure white for primary text */
+    --foreground-body: 220 13% 91%; /* Cool gray for body text */
+    --card: 240 6% 10%; /* #1A1A1F */
+    --card-foreground: 220 13% 91%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 220 13% 91%;
+    --primary: 262 83% 75%; /* #A78BFA */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 75%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 220 13% 91%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 220 9% 66%;
+    --accent: 262 83% 75%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 271 81% 56%;
-    --chart-1: 271 81% 56%;
-    --chart-2: 280 80% 65%;
-    --chart-3: 260 75% 70%;
-    --chart-4: 290 70% 60%;
-    --chart-5: 265 85% 50%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 262 83% 75%;
+    --chart-1: 262 83% 75%;
+    --chart-2: 262 83% 80%;
+    --chart-3: 262 83% 70%;
+    --chart-4: 262 83% 85%;
+    --chart-5: 262 83% 65%;
   }
 }
 
@@ -66,4 +69,132 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Glassmorphism Effects */
+.glass-card {
+  background: rgba(26, 26, 31, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(167, 139, 250, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(167, 139, 250, 0.1) inset;
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(167, 139, 250, 0.2);
+  box-shadow: 0 4px 16px rgba(167, 139, 250, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.glass-modal {
+  background: rgba(26, 26, 31, 0.6);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1.5px solid rgba(167, 139, 250, 0.4);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(167, 139, 250, 0.15) inset;
+}
+
+.glass-modal-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1.5px solid rgba(167, 139, 250, 0.25);
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Glow Effects */
+/* Button glows (dark mode) */
+.glow-primary {
+  box-shadow: 0 4px 20px rgba(162, 132, 249, 0.35), 0 0 24px rgba(162, 132, 249, 0.2);
+}
+
+.glow-primary-hover {
+  box-shadow: 0 6px 28px rgba(162, 132, 249, 0.5), 0 0 40px rgba(162, 132, 249, 0.35);
+}
+
+.glow-outline {
+  box-shadow: 0 0 20px rgba(162, 132, 249, 0.2);
+}
+
+.glow-outline-hover {
+  box-shadow: 0 0 32px rgba(162, 132, 249, 0.4);
+}
+
+/* Focus ring glow (dark mode) */
+.glow-focus {
+  box-shadow: 0 0 0 3px rgba(162, 132, 249, 0.25);
+}
+
+/* Badge glow */
+.glow-badge {
+  box-shadow: 0 0 12px rgba(162, 132, 249, 0.15);
+}
+
+/* Light mode glows (softer, inner-focused) */
+.glow-inner-light {
+  box-shadow: inset 0 2px 8px rgba(167, 139, 250, 0.15), 0 4px 12px rgba(167, 139, 250, 0.08);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+}
+
+.shimmer-effect-outline::before {
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(167, 139, 250, 0.2) 50%,
+    transparent 70%
+  );
+  animation: shimmer 2.5s infinite;
+}
+
+/* Gradient Border */
+.gradient-border {
+  position: relative;
+  background: var(--card);
+  border-radius: 12px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.5) 0%, rgba(192, 132, 252, 0.5) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
