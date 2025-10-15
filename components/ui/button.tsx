@@ -5,18 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold tracking-wide ring-offset-background transition-all duration-300 ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/90 hover:shadow-md transition-all",
+        default: "bg-gradient-to-br from-[#A78BFA] to-[#C084FC] text-white font-semibold shadow-lg shimmer-effect dark:glow-primary dark:hover:glow-primary-hover hover:-translate-y-0.5 transition-all duration-300",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-2 border-primary bg-background hover:bg-accent hover:text-accent-foreground transition-all",
+          "border-2 border-[rgba(167,139,250,0.5)] bg-transparent text-primary shimmer-effect shimmer-effect-outline dark:glow-outline dark:hover:glow-outline-hover hover:bg-[rgba(167,139,250,0.05)] hover:border-[rgba(167,139,250,0.8)] hover:-translate-y-0.5 transition-all duration-300",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-accent-foreground transition-all duration-300",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
