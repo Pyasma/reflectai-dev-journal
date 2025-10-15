@@ -34,21 +34,6 @@ interface Commit {
   commit_date: string;
 }
 
-interface JournalEntry {
-  id: string;
-  repository_id: string;
-  command_type: string;
-  user_message: string;
-  ai_summary: string | null;
-  ai_technical_details: string | null;
-  user_lessons_learned: string | null;
-  user_next_steps: string | null;
-  repositories: {
-    name: string;
-    full_name: string;
-  };
-}
-
 export default function EditEntryPage() {
   const router = useRouter();
   const params = useParams();
