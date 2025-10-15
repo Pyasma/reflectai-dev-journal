@@ -37,7 +37,7 @@ export default async function StatisticsPage() {
   const activeRepositories = new Set(allEntries?.map((e) => e.repository_id)).size;
 
   // Count by command type
-  const entriesByType = allEntries?.reduce((acc: any, entry) => {
+  const entriesByType = allEntries?.reduce((acc: Record<string, number>, entry) => {
     acc[entry.command_type] = (acc[entry.command_type] || 0) + 1;
     return acc;
   }, {});
@@ -55,7 +55,7 @@ export default async function StatisticsPage() {
   const recentEntriesCount = recentEntries?.length || 0;
 
   // Top repositories
-  const repoStats = allEntries?.reduce((acc: any, entry) => {
+  const repoStats = allEntries?.reduce((acc: Record<string, { count: number; repoId: string }>, entry) => {
     const repoId = entry.repository_id;
     if (!acc[repoId]) {
       acc[repoId] = { count: 0, repoId };
@@ -65,9 +65,9 @@ export default async function StatisticsPage() {
   }, {});
 
   const topRepos = Object.values(repoStats || {})
-    .sort((a: any, b: any) => b.count - a.count)
+    .sort((a, b) => b.count - a.count)
     .slice(0, 5)
-    .map((stat: any) => {
+    .map((stat) => {
       const repo = repositories?.find((r) => r.id === stat.repoId);
       return {
         name: repo?.name || 'Unknown',
@@ -159,7 +159,7 @@ export default async function StatisticsPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {Object.entries(entriesByType || {}).map(([type, count]: [string, any]) => (
+            {Object.entries(entriesByType || {}).map(([type, count]: [string, number]) => (
               <div key={type} className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-primary" />
@@ -194,7 +194,7 @@ export default async function StatisticsPage() {
         <CardContent>
           <div className="space-y-4">
             {topRepos.length > 0 ? (
-              topRepos.map((repo: any, index: number) => (
+              topRepos.map((repo, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center font-semibold text-sm">
