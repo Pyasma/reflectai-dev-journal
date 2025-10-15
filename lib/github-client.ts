@@ -68,14 +68,19 @@ export class GitHubClient {
         updated_at: repo.updated_at,
         created_at: repo.created_at,
       }));
-    } catch (error: any) {
-      if (error.status === 401) {
+    } catch (error: unknown) {
+      const errorStatus = typeof error === 'object' && error !== null && 'status' in error 
+        ? (error as { status: number }).status 
+        : undefined;
+      const errorMessage = error instanceof Error ? error.message : '';
+      
+      if (errorStatus === 401) {
         throw new Error('Unable to access GitHub. Try logging in again.');
       }
-      if (error.status === 403 && error.message.includes('rate limit')) {
+      if (errorStatus === 403 && errorMessage.includes('rate limit')) {
         throw new Error('GitHub API rate limit exceeded. Please try again later.');
       }
-      throw new Error(`Failed to fetch repositories: ${error.message}`);
+      throw new Error(`Failed to fetch repositories: ${errorMessage}`);
     }
   }
 
@@ -94,7 +99,7 @@ export class GitHubClient {
     since?: string
   ): Promise<GitHubCommit[]> {
     try {
-      const params: any = {
+      const params: { owner: string; repo: string; per_page: number; since?: string } = {
         owner,
         repo,
         per_page: perPage,
@@ -107,14 +112,19 @@ export class GitHubClient {
       const { data } = await this.octokit.rest.repos.listCommits(params);
 
       return data as GitHubCommit[];
-    } catch (error: any) {
-      if (error.status === 401) {
+    } catch (error: unknown) {
+      const errorStatus = typeof error === 'object' && error !== null && 'status' in error 
+        ? (error as { status: number }).status 
+        : undefined;
+      const errorMessage = error instanceof Error ? error.message : '';
+      
+      if (errorStatus === 401) {
         throw new Error('Unable to access GitHub. Try logging in again.');
       }
-      if (error.status === 403 && error.message.includes('rate limit')) {
+      if (errorStatus === 403 && errorMessage.includes('rate limit')) {
         throw new Error('GitHub API rate limit exceeded. Please try again later.');
       }
-      throw new Error(`Failed to fetch commits: ${error.message}`);
+      throw new Error(`Failed to fetch commits: ${errorMessage}`);
     }
   }
 
@@ -138,14 +148,19 @@ export class GitHubClient {
       });
 
       return data as GitHubCommit;
-    } catch (error: any) {
-      if (error.status === 401) {
+    } catch (error: unknown) {
+      const errorStatus = typeof error === 'object' && error !== null && 'status' in error 
+        ? (error as { status: number }).status 
+        : undefined;
+      const errorMessage = error instanceof Error ? error.message : '';
+      
+      if (errorStatus === 401) {
         throw new Error('Unable to access GitHub. Try logging in again.');
       }
-      if (error.status === 403 && error.message.includes('rate limit')) {
+      if (errorStatus === 403 && errorMessage.includes('rate limit')) {
         throw new Error('GitHub API rate limit exceeded. Please try again later.');
       }
-      throw new Error(`Failed to fetch commit: ${error.message}`);
+      throw new Error(`Failed to fetch commit: ${errorMessage}`);
     }
   }
 
@@ -162,14 +177,19 @@ export class GitHubClient {
         name: data.name,
         email: data.email,
       };
-    } catch (error: any) {
-      if (error.status === 401) {
+    } catch (error: unknown) {
+      const errorStatus = typeof error === 'object' && error !== null && 'status' in error 
+        ? (error as { status: number }).status 
+        : undefined;
+      const errorMessage = error instanceof Error ? error.message : '';
+      
+      if (errorStatus === 401) {
         throw new Error('Unable to access GitHub. Try logging in again.');
       }
-      if (error.status === 403 && error.message.includes('rate limit')) {
+      if (errorStatus === 403 && errorMessage.includes('rate limit')) {
         throw new Error('GitHub API rate limit exceeded. Please try again later.');
       }
-      throw new Error(`Failed to fetch user profile: ${error.message}`);
+      throw new Error(`Failed to fetch user profile: ${errorMessage}`);
     }
   }
 
@@ -185,8 +205,9 @@ export class GitHubClient {
         remaining: data.rate.remaining,
         reset: new Date(data.rate.reset * 1000),
       };
-    } catch (error: any) {
-      throw new Error(`Failed to fetch rate limit: ${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      throw new Error(`Failed to fetch rate limit: ${errorMessage}`);
     }
   }
 }
