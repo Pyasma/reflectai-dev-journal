@@ -1,7 +1,7 @@
 'use client';
 
 import { EntryCard } from './EntryCard';
-import { format, isSameDay, parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 interface TimelineProps {
   entries: Array<{
