@@ -51,11 +51,16 @@ async function generateWithRetry(
       const result = await generativeModel.generateContent(prompt);
       const response = result.response;
       return response.text();
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : '';
+      const errorStatus = typeof error === 'object' && error !== null && 'status' in error 
+        ? (error as { status: number }).status 
+        : undefined;
+      
       const isRateLimit =
-        error.message?.includes('429') ||
-        error.message?.includes('rate limit') ||
-        error.status === 429;
+        errorMessage?.includes('429') ||
+        errorMessage?.includes('rate limit') ||
+        errorStatus === 429;
 
       if (isRateLimit && attempt < maxRetries - 1) {
         // Exponential backoff: 2^attempt seconds
@@ -159,18 +164,20 @@ Generate the development journal entry now:`;
       fullResponse: generatedText,
       modelUsed: modelName,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Gemini generation error:', error);
+    
+    const errorMessage = error instanceof Error ? error.message : '';
 
     // Handle specific error types
-    if (error.message?.includes('API key')) {
+    if (errorMessage?.includes('API key')) {
       return NextResponse.json(
         { error: 'Invalid Gemini API key. Please check your settings.' },
         { status: 400 }
       );
     }
 
-    if (error.message?.includes('429') || error.message?.includes('rate limit')) {
+    if (errorMessage?.includes('429') || errorMessage?.includes('rate limit')) {
       return NextResponse.json(
         { error: 'Gemini API rate limit exceeded. Please try again in a few moments.' },
         { status: 429 }
@@ -178,7 +185,7 @@ Generate the development journal entry now:`;
     }
 
     return NextResponse.json(
-      { error: error.message || 'Failed to generate summary' },
+      { error: errorMessage || 'Failed to generate summary' },
       { status: 500 }
     );
   }
