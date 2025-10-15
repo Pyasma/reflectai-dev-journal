@@ -53,7 +53,7 @@ export function TiptapEditor({
     editorProps: {
       attributes: {
         class:
-          'prose prose-sm max-w-none focus:outline-none min-h-[200px] px-4 py-3',
+          'prose prose-sm max-w-none focus:outline-none min-h-[200px] px-4 py-3 dark:text-foreground',
       },
     },
     onUpdate: ({ editor }) => {
@@ -88,15 +88,15 @@ export function TiptapEditor({
   };
 
   return (
-    <div className={`border rounded-md bg-background ${className}`}>
+    <div className={`glass-card-light dark:glass-card rounded-lg ${className}`}>
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-1 border-b p-2 bg-muted/50">
+      <div className="flex flex-wrap items-center gap-1 border-b border-[rgba(167,139,250,0.15)] p-2 bg-muted/30 backdrop-blur-sm">
         <Button
           type="button"
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive('bold') ? 'bg-muted' : ''}
+          className={editor.isActive('bold') ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <Bold className="h-4 w-4" />
         </Button>
@@ -105,7 +105,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive('italic') ? 'bg-muted' : ''}
+          className={editor.isActive('italic') ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <Italic className="h-4 w-4" />
         </Button>
@@ -114,7 +114,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={editor.isActive('heading', { level: 2 }) ? 'bg-muted' : ''}
+          className={editor.isActive('heading', { level: 2 }) ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <Heading2 className="h-4 w-4" />
         </Button>
@@ -123,7 +123,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive('bulletList') ? 'bg-muted' : ''}
+          className={editor.isActive('bulletList') ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <List className="h-4 w-4" />
         </Button>
@@ -132,7 +132,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive('orderedList') ? 'bg-muted' : ''}
+          className={editor.isActive('orderedList') ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <ListOrdered className="h-4 w-4" />
         </Button>
@@ -141,7 +141,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={editor.isActive('blockquote') ? 'bg-muted' : ''}
+          className={editor.isActive('blockquote') ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <Quote className="h-4 w-4" />
         </Button>
@@ -150,7 +150,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={toggleLink}
-          className={editor.isActive('link') ? 'bg-muted' : ''}
+          className={editor.isActive('link') ? 'bg-primary/10 dark:glow-badge' : ''}
         >
           <LinkIcon className="h-4 w-4" />
         </Button>
