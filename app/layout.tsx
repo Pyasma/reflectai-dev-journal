@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "ReflectAI - Developer Journal",
@@ -18,14 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <header className="border-b px-6 py-4">
+      <body className="flex flex-col min-h-screen">
+        <header className="border-b border-[rgba(167,139,250,0.15)] dark:border-[rgba(167,139,250,0.2)] px-6 py-4 backdrop-blur-sm bg-card/50">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold">ReflectAI</h1>
+            <h1 className="text-xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">ReflectAI</h1>
             <ThemeToggle />
           </div>
         </header>
         {children}
+        <Footer />
         <Toaster />
       </body>
     </html>
