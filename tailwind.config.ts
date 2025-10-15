@@ -22,8 +22,15 @@ const config: Config = {
         foreground: "hsl(var(--foreground))",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Satoshi", "system-ui", "-apple-system", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+      },
+      transitionDuration: {
+        '250': '250ms',
+        '350': '350ms',
+      },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
       keyframes: {
         "fade-in": {
