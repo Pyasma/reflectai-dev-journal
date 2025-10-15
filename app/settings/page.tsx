@@ -120,11 +120,11 @@ export default function SettingsPage() {
         title: 'Settings saved',
         description: 'Your settings have been updated successfully.',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to save settings:', error);
       toast({
         title: 'Error',
-        description: error.message || 'Failed to save settings. Please try again.',
+        description: error instanceof Error ? error.message : 'Failed to save settings. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -176,11 +176,11 @@ export default function SettingsPage() {
         title: 'API key deleted',
         description: 'Your Gemini API key has been removed successfully.',
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to delete API key:', error);
       toast({
         title: 'Error',
-        description: error.message || 'Failed to delete API key. Please try again.',
+        description: error instanceof Error ? error.message : 'Failed to delete API key. Please try again.',
         variant: 'destructive',
       });
     } finally {
