@@ -45,7 +45,7 @@ export function ThemeToggle() {
     // Save to localStorage (with fallback for incognito mode)
     try {
       localStorage.setItem('theme', newTheme);
-    } catch (e) {
+    } catch (_e) {
       // localStorage unavailable - theme still works but won't persist
       console.warn('localStorage unavailable, theme will not persist');
     }
