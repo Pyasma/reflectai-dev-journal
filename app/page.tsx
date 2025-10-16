@@ -45,7 +45,7 @@ function LandingPageContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-[rgba(167,139,250,0.05)]">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-[rgba(58, 29, 147, 0.05)]">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <header className="text-center mb-16">

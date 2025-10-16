@@ -72,24 +72,33 @@
 }
 
 /* Glassmorphism Effects */
+/* Dark mode: deep violet glass */
 .glass-card {
-  background: rgba(26, 26, 31, 0.5);
+  background: rgba(40, 0, 80, 0.3); /* translucent amethyst-black */
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid rgba(167, 139, 250, 0.35);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(167, 139, 250, 0.1) inset;
+  border: 1.5px solid rgba(167, 139, 250, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(167, 139, 250, 0.15) inset,
+    0 0 20px rgba(38, 24, 80, 0.25);
 }
 
+/* Light mode: luminous amethyst-white glass */
 .glass-card-light {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid rgba(167, 139, 250, 0.2);
-  box-shadow: 0 4px 16px rgba(167, 139, 250, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  border: 1.5px solid rgba(167, 139, 250, 0.25);
+  box-shadow:
+    0 4px 16px rgba(167, 139, 250, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+    0 0 24px rgba(167, 139, 250, 0.15);
 }
 
+
 .glass-modal {
-  background: rgba(26, 26, 31, 0.6);
+  background: rgba(102, 102, 113, 0.6);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   border: 1.5px solid rgba(167, 139, 250, 0.4);
@@ -97,7 +106,7 @@
 }
 
 .glass-modal-light {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(202, 48, 48, 0.85);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   border: 1.5px solid rgba(167, 139, 250, 0.25);
