@@ -190,14 +190,45 @@ reflectai-dev-journal/
 
 ### Deploy to Netlify
 
-1. Push your code to GitHub
-2. Connect your repository to Netlify
-3. Configure build settings:
-   - Build command: `npm run build`
-   - Publish directory: `.next`
-4. Add environment variables in Netlify dashboard
-5. Update GitHub OAuth callback URL to your Netlify domain
-6. Update Supabase redirect URLs to include your Netlify domain
+#### Prerequisites
+
+1. Ensure `netlify.toml` exists in repository root (contains plugin configuration)
+2. Verify GitHub OAuth callback URL includes your Netlify domain
+3. Verify Supabase redirect URLs include your Netlify domain
+
+#### Build Settings
+
+Netlify will automatically detect settings from netlify.toml:
+- **Build command**: `npm run build` (from netlify.toml)
+- **Publish directory**: `.next` (from netlify.toml)
+- **Next.js Plugin**: Automatically applied (from netlify.toml)
+
+#### Environment Variables
+
+Add all environment variables from your `.env.local` to Netlify dashboard (Site settings → Environment variables):
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_DB_ENCRYPTION_KEY`
+- `GITHUB_CLIENT_ID` (if using GitHub features)
+- `GITHUB_CLIENT_SECRET` (if using GitHub features)
+- `NODE_ENV` (set to "production")
+
+#### Deployment
+
+1. Connect repository to Netlify
+2. Netlify will automatically use netlify.toml configuration
+3. Deploy will build Next.js app with plugin support
+4. Middleware and API routes will work in production
+
+#### Verification
+
+After deployment:
+1. Navigate to your Netlify URL
+2. Click "Continue with GitHub"
+3. Complete OAuth flow
+4. Should redirect to /dashboard successfully
+5. Test protected routes (/dashboard, /settings, /statistics)
 
 ## Troubleshooting
 
