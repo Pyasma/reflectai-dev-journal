@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { createClient } from '@/lib/supabase/client';
 import { Github, BookOpen, Sparkles, TrendingUp, AlertCircle } from 'lucide-react';
 
@@ -11,6 +12,8 @@ function LandingPageContent() {
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showOAuthError, setShowOAuthError] = useState(false);
+  const [detectedCode, setDetectedCode] = useState<string | null>(null);
 
   useEffect(() => {
     // Check for auth error from callback
@@ -19,6 +22,32 @@ function LandingPageContent() {
       setError('Authentication failed. Please try again.');
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    // Check for code parameter on homepage (indicates GitHub redirected to wrong URL)
+    const codeParam = searchParams.get('code');
+    if (codeParam) {
+      // Check if user is already authenticated
+      const supabase = createClient();
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        // Only show modal if not authenticated
+        if (!session) {
+          setDetectedCode(codeParam);
+          setShowOAuthError(true);
+        }
+      });
+    }
+  }, [searchParams]);
+
+  const handleCloseOAuthError = () => {
+    setShowOAuthError(false);
+    // Clean up URL by removing code parameter
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('code');
+      window.history.replaceState({}, '', url.toString());
+    }
+  };
 
   const handleGitHubLogin = async () => {
     setIsLoading(true);
@@ -46,6 +75,88 @@ function LandingPageContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-[rgba(58, 29, 147, 0.05)]">
+      {/* OAuth Misconfiguration Modal */}
+      <Dialog open={showOAuthError} onOpenChange={(open) => {
+        if (!open) handleCloseOAuthError();
+      }}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <div className="flex items-center gap-2 mb-2">
+              <AlertCircle className="h-6 w-6 text-destructive" />
+              <DialogTitle className="text-xl">GitHub OAuth Misconfiguration Detected</DialogTitle>
+            </div>
+            <DialogDescription className="text-base">
+              GitHub is redirecting to the wrong URL. Your OAuth App&apos;s callback URL should point to Supabase, not this app.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-4">
+            {/* Expected URL Section */}
+            <div>
+              <p className="text-sm font-semibold mb-2 text-foreground">Expected Callback URL:</p>
+              <div className="p-3 bg-muted rounded-md border border-border">
+                <code className="text-sm font-mono text-foreground break-all">
+                  {process.env.NEXT_PUBLIC_SUPABASE_URL 
+                    ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/callback`
+                    : 'https://your-project.supabase.co/auth/v1/callback'}
+                </code>
+              </div>
+              {!process.env.NEXT_PUBLIC_SUPABASE_URL && (
+                <p className="text-xs text-muted-foreground mt-1">
+                  Note: NEXT_PUBLIC_SUPABASE_URL not found. Check your environment variables.
+                </p>
+              )}
+            </div>
+
+            {/* Detected URL Section */}
+            <div>
+              <p className="text-sm font-semibold mb-2 text-foreground">GitHub Redirected To:</p>
+              <div className="p-3 bg-destructive/10 rounded-md border border-destructive/50">
+                <code className="text-sm font-mono text-destructive break-all">
+                  {typeof window !== 'undefined' 
+                    ? `${window.location.origin}/?code=${detectedCode?.substring(0, 8)}...`
+                    : 'http://localhost:3000/?code=...'}
+                </code>
+              </div>
+            </div>
+
+            {/* Fix Instructions */}
+            <div>
+              <p className="text-sm font-semibold mb-2 text-foreground">To fix this:</p>
+              <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
+                <li>
+                  Go to{' '}
+                  <a 
+                    href="https://github.com/settings/developers" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    GitHub Developer Settings → OAuth Apps
+                  </a>
+                </li>
+                <li>Update <strong className="text-foreground">Authorization callback URL</strong> to match the expected URL above</li>
+                <li>Save changes and try signing in again</li>
+              </ol>
+            </div>
+          </div>
+
+          <DialogFooter className="gap-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                window.open('/SETUP_GUIDE.md', '_blank');
+              }}
+            >
+              View Full Setup Guide
+            </Button>
+            <Button onClick={handleCloseOAuthError}>
+              Got It
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <header className="text-center mb-16">
