@@ -7,92 +7,79 @@ export async function GET(request: NextRequest) {
   const code = requestUrl.searchParams.get('code');
   const origin = requestUrl.origin;
 
+  // The destination path after successful authentication
+  const dashboardPath = '/dashboard';
+  
+  // CRITICAL: Append a bypass flag to prevent middleware issues on first load
+  const finalRedirectURL = `${origin}${dashboardPath}?auth-bypass=true`;
+  
+  // Default redirect on failure
+  const failureRedirectURL = `${origin}/?error=auth_failed`;
+
   if (code) {
     const supabase = await createClient();
 
     try {
-      // Exchange code for session
+      // 1. Exchange code for session
       const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
-      if (exchangeError) {
-        console.error('Authentication error occurred', exchangeError);
-        return NextResponse.redirect(`${origin}/?error=auth_failed`);
+      if (exchangeError || !data.user) {
+        console.error('Authentication error occurred during code exchange:', exchangeError);
+        return NextResponse.redirect(failureRedirectURL);
       }
 
-      if (!data.user) {
-        return NextResponse.redirect(`${origin}/?error=auth_failed`);
-      }
-
-      // Get GitHub provider token for API access
-      const providerToken = data.session?.provider_token;
+      // --- Database Operations (Upsert User/Settings) ---
+      
       const githubUsername = data.user.user_metadata?.user_name;
       const githubAvatarUrl = data.user.user_metadata?.avatar_url;
 
-      // Upsert user profile
+      // 1. Upsert user profile (Corrected usage with try...catch)
       try {
         const { error: userError } = await supabase
-          .from('users')
-          .upsert(
-            {
+            .from('users')
+            .upsert({
               id: data.user.id,
               github_username: githubUsername,
               github_avatar_url: githubAvatarUrl,
               updated_at: new Date().toISOString(),
-            },
-            {
-              onConflict: 'id',
-            }
-          );
+            }, { onConflict: 'id' });
 
         if (userError) {
-          console.error('User upsert error:', userError);
+          console.error('User upsert Postgrest error:', userError);
         }
-      } catch (error) {
-        console.error('User upsert error:', error);
+      } catch (error: unknown) {
+        // Catches any general runtime error or network error during upsert.
+        console.error('User upsert runtime error:', error);
       }
 
-      // Create/update default user settings (always overwrite)
+      // 2. Create/update default user settings (Corrected usage with try...catch)
       try {
         const { error: settingsError } = await supabase
-          .from('user_settings')
-          .upsert(
-            {
+            .from('user_settings')
+            .upsert({
               user_id: data.user.id,
               gemini_model_preference: 'gemini-2.0-flash-exp',
               updated_at: new Date().toISOString(),
-            },
-            {
-              onConflict: 'user_id',
-            }
-          );
+            }, { onConflict: 'user_id' });
 
         if (settingsError) {
-          console.error('Failed to create/update user settings', settingsError);
+          console.error('Settings upsert Postgrest error:', settingsError);
         }
-      } catch (error) {
-        console.error('Failed to create/update user settings', error);
+      } catch (error: unknown) {
+        // Catches any general runtime error or network error during upsert.
+        console.error('Settings upsert runtime error:', error);
       }
 
-      // Try to sync GitHub profile (non-blocking)
-      if (providerToken) {
-        try {
-          // This will be handled by the sync-repos API route later
-          // For now, just log that we have the token
-          console.log('GitHub provider token available for future sync');
-        } catch (error) {
-          console.error('GitHub profile sync failed:', error);
-          // Continue to dashboard anyway
-        }
-      }
+      // 3. Redirect to dashboard with the bypass flag
+      return NextResponse.redirect(finalRedirectURL);
 
-      // Redirect to dashboard
-      return NextResponse.redirect(`${origin}/dashboard`);
-    } catch (error) {
-      console.error('Authentication error occurred', error);
-      return NextResponse.redirect(`${origin}/?error=auth_failed`);
+    } catch (error: unknown) { 
+      // Catches errors during code exchange or other critical parts of the outer block
+      console.error('General authentication error occurred:', error);
+      return NextResponse.redirect(failureRedirectURL);
     }
   }
 
-  // No code provided, redirect to home
-  return NextResponse.redirect(`${origin}/?error=auth_failed`);
+  // No code provided (initial OAuth request failed or malformed)
+  return NextResponse.redirect(failureRedirectURL);
 }
