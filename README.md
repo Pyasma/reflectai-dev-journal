@@ -236,6 +236,64 @@ After deployment:
 - Verify callback URLs match exactly in GitHub and Supabase settings
 - Check that environment variables are set correctly
 
+### GitHub Redirecting to Wrong URL (Code Parameter on Homepage)
+
+**Symptom:**
+- After clicking "Sign in with GitHub", you're redirected to `http://localhost:3000/?code=...`
+- Authentication fails
+- Modal appears: "GitHub OAuth Misconfiguration Detected"
+
+**Root Cause:**
+GitHub OAuth App's Authorization callback URL is pointing to your app instead of Supabase.
+
+**Solution:**
+
+Follow these step-by-step instructions:
+
+1. **Find Your Supabase Callback URL:**
+   - Go to Supabase Dashboard → Settings → API
+   - Your callback URL is: `https://YOUR-PROJECT-ID.supabase.co/auth/v1/callback`
+   - Example: `https://abcdefghijklmnop.supabase.co/auth/v1/callback`
+
+2. **Update GitHub OAuth App:**
+   - Visit: https://github.com/settings/developers
+   - Click on your OAuth App (e.g., "ReflectAI")
+   - Find "Authorization callback URL" field
+   - Replace current URL with your Supabase callback URL from step 1
+   - Click "Update application"
+
+3. **Verify Supabase Configuration:**
+   - Go to Supabase Dashboard → Authentication → Providers
+   - Click on GitHub provider
+   - Verify the callback URL matches what you entered in GitHub
+   - Both should be: `https://YOUR-PROJECT-ID.supabase.co/auth/v1/callback`
+
+4. **Test the Fix:**
+   - Clear browser cache and cookies for localhost:3000
+   - Go to http://localhost:3000
+   - Click "Sign in with GitHub"
+   - You should be redirected through Supabase (URL will briefly show supabase.co)
+   - After authorization, you'll land on /dashboard
+
+**Common Mistakes:**
+- ❌ Setting callback to `http://localhost:3000/auth/callback` (wrong - this is the app's route, not GitHub's callback)
+- ❌ Setting callback to `http://localhost:3000` (wrong - missing Supabase domain)
+- ✅ Correct format: `https://your-project.supabase.co/auth/v1/callback`
+
+**Visual Aid:**
+```
+Correct Flow:
+User clicks login → GitHub OAuth → Supabase callback → App's /auth/callback → Dashboard
+
+Broken Flow (what you're seeing):
+User clicks login → GitHub OAuth → App's homepage with ?code=... → Error
+```
+
+**Additional Notes:**
+- The app's internal `/auth/callback` route is different from GitHub's callback URL
+- GitHub should never redirect directly to your app - it must go through Supabase first
+- For production: Update callback URL to `https://your-production-domain.supabase.co/auth/v1/callback`
+
 ### Gemini API Errors
 - Ensure your API key is valid and has not exceeded rate limits
 - Check that you've selected an appropriate model in settings
