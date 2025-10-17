@@ -77,7 +77,7 @@ export default async function DashboardPage() {
           <Timeline entries={entries} />
         </div>
       ) : (
-        <Card className="mt-8 animate-scale-in animation-delay-300 hover-lift">
+        <Card className="mt-8 max-w-2xl mx-auto animate-scale-in animation-delay-300 hover-lift">
           <CardContent className="flex flex-col items-center justify-center py-16">
             <BookOpen className="h-16 w-16 text-muted-foreground mb-4 animate-float" />
             <CardTitle className="mb-2 text-center">No journal entries yet</CardTitle>
