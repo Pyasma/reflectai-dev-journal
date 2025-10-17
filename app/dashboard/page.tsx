@@ -43,41 +43,50 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+      {/* Header with animations */}
+      <div className="flex items-center justify-between animate-fade-in-down">
         <div>
-          <h1 className="text-3xl font-bold">Your Development Journal</h1>
-          <p className="text-muted-foreground mt-1">
+          <h1 className="text-3xl font-bold bg-gradient-to-br from-foreground to-primary bg-clip-text text-transparent">
+            Your Development Journal
+          </h1>
+          <p className="text-muted-foreground mt-1 animate-fade-in-up animation-delay-100">
             Track your coding sessions and reflect on your progress
           </p>
         </div>
-        <Link href="/dashboard/new-entry">
-          <Button size="lg">
+        <Link href="/dashboard/new-entry" className="animate-fade-in-left animation-delay-100">
+          <Button 
+            size="lg"
+            className="hover-scale hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(167,139,250,0.4)] transition-all duration-300"
+          >
             <PlusCircle className="mr-2 h-5 w-5" />
             New Entry
           </Button>
         </Link>
       </div>
 
-      {/* Filter Bar */}
+      {/* Filter Bar with animation */}
       {hasEntries && repositories && (
-        <FilterBar repositories={repositories} />
+        <div className="animate-fade-in-up animation-delay-200">
+          <FilterBar repositories={repositories} />
+        </div>
       )}
 
       {/* Timeline or Empty State */}
       {hasEntries ? (
-        <Timeline entries={entries} />
+        <div className="animate-fade-in">
+          <Timeline entries={entries} />
+        </div>
       ) : (
-        <Card className="mt-8">
+        <Card className="mt-8 animate-scale-in animation-delay-300 hover-lift">
           <CardContent className="flex flex-col items-center justify-center py-16">
-            <BookOpen className="h-16 w-16 text-muted-foreground mb-4" />
-            <CardTitle className="mb-2">No journal entries yet</CardTitle>
+            <BookOpen className="h-16 w-16 text-muted-foreground mb-4 animate-float" />
+            <CardTitle className="mb-2 text-center">No journal entries yet</CardTitle>
             <CardDescription className="text-center max-w-md mb-6">
               Start documenting your development journey by creating your first journal entry.
               Connect a repository, describe your work, and let AI help you reflect.
             </CardDescription>
             <Link href="/dashboard/new-entry">
-              <Button>
+              <Button className="hover-scale hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(167,139,250,0.4)] transition-all duration-300">
                 <PlusCircle className="mr-2 h-5 w-5" />
                 Create First Entry
               </Button>
