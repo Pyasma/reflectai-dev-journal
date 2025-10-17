@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { createClient } from '@/lib/supabase/client';
 import { Github, BookOpen, Sparkles, TrendingUp, AlertCircle } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
 function LandingPageContent() {
   const searchParams = useSearchParams();
@@ -75,6 +76,14 @@ function LandingPageContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-[rgba(58, 29, 147, 0.05)]">
+      {/* Header with Theme Toggle */}
+      <header className="border-b border-[rgba(167,139,250,0.15)] dark:border-[rgba(167,139,250,0.2)] px-6 py-4 backdrop-blur-sm bg-card/50">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">ReflectAI</h1>
+          <ThemeToggle />
+        </div>
+      </header>
+
       {/* OAuth Misconfiguration Modal */}
       <Dialog open={showOAuthError} onOpenChange={(open) => {
         if (!open) handleCloseOAuthError();
