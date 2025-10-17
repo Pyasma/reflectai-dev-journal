@@ -75,11 +75,18 @@ function LandingPageContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-[rgba(58, 29, 147, 0.05)]">
-      {/* Header with Theme Toggle */}
-      <header className="border-b border-[rgba(167,139,250,0.15)] dark:border-[rgba(167,139,250,0.2)] px-6 py-4 backdrop-blur-sm bg-card/50">
+    <div className="relative min-h-screen bg-gradient-to-b from-background via-background to-[rgba(58, 29, 147, 0.05)] overflow-hidden">
+      {/* Floating Particles Background */}
+      <div className="particle particle-1" />
+      <div className="particle particle-2" />
+      <div className="particle particle-3" />
+      
+      {/* Header with Theme Toggle - Animated */}
+      <header className="relative z-20 border-b border-[rgba(167,139,250,0.15)] dark:border-[rgba(167,139,250,0.2)] px-6 py-4 backdrop-blur-sm bg-card/50 animate-fade-in-down">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">ReflectAI</h1>
+          <h1 className="text-xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+            ReflectAI
+          </h1>
           <ThemeToggle />
         </div>
       </header>
@@ -88,10 +95,10 @@ function LandingPageContent() {
       <Dialog open={showOAuthError} onOpenChange={(open) => {
         if (!open) handleCloseOAuthError();
       }}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl animate-scale-in-center">
           <DialogHeader>
             <div className="flex items-center gap-2 mb-2">
-              <AlertCircle className="h-6 w-6 text-destructive" />
+              <AlertCircle className="h-6 w-6 text-destructive animate-pulse" />
               <DialogTitle className="text-xl">GitHub OAuth Misconfiguration Detected</DialogTitle>
             </div>
             <DialogDescription className="text-base">
@@ -101,7 +108,7 @@ function LandingPageContent() {
 
           <div className="space-y-4 py-4">
             {/* Expected URL Section */}
-            <div>
+            <div className="animate-fade-in-up">
               <p className="text-sm font-semibold mb-2 text-foreground">Expected Callback URL:</p>
               <div className="p-3 bg-muted rounded-md border border-border">
                 <code className="text-sm font-mono text-foreground break-all">
@@ -118,7 +125,7 @@ function LandingPageContent() {
             </div>
 
             {/* Detected URL Section */}
-            <div>
+            <div className="animate-fade-in-up animation-delay-100">
               <p className="text-sm font-semibold mb-2 text-foreground">GitHub Redirected To:</p>
               <div className="p-3 bg-destructive/10 rounded-md border border-destructive/50">
                 <code className="text-sm font-mono text-destructive break-all">
@@ -130,7 +137,7 @@ function LandingPageContent() {
             </div>
 
             {/* Fix Instructions */}
-            <div>
+            <div className="animate-fade-in-up animation-delay-200">
               <p className="text-sm font-semibold mb-2 text-foreground">To fix this:</p>
               <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
                 <li>
@@ -156,42 +163,45 @@ function LandingPageContent() {
               onClick={() => {
                 window.open('/SETUP_GUIDE.md', '_blank');
               }}
+              className="hover-scale"
             >
               View Full Setup Guide
             </Button>
-            <Button onClick={handleCloseOAuthError}>
+            <Button onClick={handleCloseOAuthError} className="hover-scale">
               Got It
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <div className="container mx-auto px-4 py-16">
-        {/* Header */}
-        <header className="text-center mb-16">
+      <div className="relative z-10 container mx-auto px-4 py-16">
+        {/* Main Header - Animated */}
+        <header className="text-center mb-16 animate-fade-in-up">
           <div className="flex items-center justify-center mb-6">
-            <BookOpen className="h-12 w-12 text-primary mr-3" />
-            <h1 className="text-5xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">ReflectAI</h1>
+            <BookOpen className="h-12 w-12 text-primary mr-3 animate-float" />
+            <h1 className="text-5xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
+              ReflectAI
+            </h1>
           </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animation-delay-100">
             Your AI-powered development journal that automatically logs and reflects on your coding sessions
           </p>
         </header>
 
         {/* Error Alert */}
         {error && (
-          <div className="max-w-md mx-auto mb-8">
+          <div className="max-w-md mx-auto mb-8 animate-scale-in">
             <Card className="border-destructive/50 bg-destructive/10 glass-card-light dark:glass-card">
               <CardContent className="flex items-center gap-3 p-4">
-                <AlertCircle className="h-5 w-5 text-destructive" />
+                <AlertCircle className="h-5 w-5 text-destructive animate-pulse" />
                 <p className="text-sm text-destructive">{error}</p>
               </CardContent>
             </Card>
           </div>
         )}
 
-        {/* CTA Card */}
-        <Card className="max-w-md mx-auto mb-16 glass-card-light dark:glass-card glow-inner-light">
+        {/* CTA Card - Animated */}
+        <Card className="max-w-md mx-auto mb-16 glass-card-light dark:glass-card glow-inner-light hover-lift animate-fade-in-up animation-delay-200">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-semibold mb-4 text-foreground">Get Started</h2>
             <p className="text-muted-foreground mb-6">
@@ -201,7 +211,7 @@ function LandingPageContent() {
               onClick={handleGitHubLogin}
               disabled={isLoading}
               size="lg"
-              className="w-full"
+              className="w-full ripple-effect hover-scale hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(167,139,250,0.4)] transition-all duration-300"
             >
               <Github className="mr-2 h-5 w-5" />
               {isLoading ? 'Connecting...' : 'Sign in with GitHub'}
@@ -212,32 +222,38 @@ function LandingPageContent() {
           </CardContent>
         </Card>
 
-        {/* Features */}
+        {/* Features - Stagger Animated */}
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <Card>
+          <Card className="hover-lift hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(167,139,250,0.25)] transition-all duration-500 animate-fade-in-up animation-delay-300 hover:border-primary/30 group">
             <CardContent className="p-6">
-              <Sparkles className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-lg font-semibold mb-2 text-foreground">AI-Powered Summaries</h3>
+              <Sparkles className="h-10 w-10 text-primary mb-4 animate-pulse group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                AI-Powered Summaries
+              </h3>
               <p className="text-sm text-muted-foreground">
                 Gemini AI generates comprehensive summaries of your coding sessions, extracting technical details and insights
               </p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="hover-lift hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(167,139,250,0.25)] transition-all duration-500 animate-fade-in-up animation-delay-400 hover:border-primary/30 group">
             <CardContent className="p-6">
-              <BookOpen className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-lg font-semibold mb-2 text-foreground">Manual Control</h3>
+              <BookOpen className="h-10 w-10 text-primary mb-4 animate-float group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                Manual Control
+              </h3>
               <p className="text-sm text-muted-foreground">
                 Create journal entries on your terms. Select commits, add context, and let AI help document your work
               </p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="hover-lift hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(167,139,250,0.25)] transition-all duration-500 animate-fade-in-up animation-delay-500 hover:border-primary/30 group">
             <CardContent className="p-6">
-              <TrendingUp className="h-10 w-10 text-primary mb-4" />
-              <h3 className="text-lg font-semibold mb-2 text-foreground">Track Progress</h3>
+              <TrendingUp className="h-10 w-10 text-primary mb-4 animate-bounce group-hover:scale-110 transition-transform duration-300" />
+              <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                Track Progress
+              </h3>
               <p className="text-sm text-muted-foreground">
                 Visualize your development journey with timeline views, statistics, and searchable journal entries
               </p>
