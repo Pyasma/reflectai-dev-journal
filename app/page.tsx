@@ -81,16 +81,6 @@ function LandingPageContent() {
       <div className="particle particle-2" />
       <div className="particle particle-3" />
       
-      {/* Header with Theme Toggle - Animated */}
-      <header className="relative z-20 border-b border-[rgba(167,139,250,0.15)] dark:border-[rgba(167,139,250,0.2)] px-6 py-4 backdrop-blur-sm bg-card/50 animate-fade-in-down">
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-            ReflectAI
-          </h1>
-          <ThemeToggle />
-        </div>
-      </header>
-
       {/* OAuth Misconfiguration Modal */}
       <Dialog open={showOAuthError} onOpenChange={(open) => {
         if (!open) handleCloseOAuthError();
@@ -203,7 +193,7 @@ function LandingPageContent() {
         {/* CTA Card - Animated */}
         <Card className="max-w-md mx-auto mb-16 glass-card-light dark:glass-card glow-inner-light hover-lift animate-fade-in-up animation-delay-200">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-semibold mb-4 text-foreground">Get Started</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-primary">Get Started</h2>
             <p className="text-muted-foreground mb-6">
               Sign in with GitHub to start tracking your development journey
             </p>
