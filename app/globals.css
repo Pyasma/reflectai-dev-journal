@@ -35,8 +35,8 @@
 
   .dark {
     --background: 240 10% 5.5%; /* #0E0E11 */
-    --foreground: 0 0% 100%; /* Pure white for primary text */
-    --foreground-body: 220 13% 91%; /* Cool gray for body text */
+    --foreground: 262 83% 75%; /* Amethyst #A78BFA for primary text */
+    --foreground-body: 262 83% 75%; /* Amethyst #A78BFA for body text */
     --card: 240 6% 10%; /* #1A1A1F */
     --card-foreground: 220 13% 91%;
     --popover: 240 6% 10%;
