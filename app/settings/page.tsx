@@ -9,8 +9,9 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Save, Key, Sparkles, Code, Trash2 } from 'lucide-react';
+import { Loader2, Save, Key, Sparkles, Code, Trash2, BookOpen } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 const DEFAULT_SYSTEM_PROMPT = `You are an expert technical writer helping developers document their coding sessions.
 
@@ -199,6 +200,12 @@ export default function SettingsPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
+        <Link href="/dashboard" className="inline-flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
+          <BookOpen className="h-6 w-6 text-primary" />
+          <span className="text-xl font-bold bg-gradient-to-r from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
+            ReflectAI
+          </span>
+        </Link>
         <h1 className="text-3xl font-bold">Settings</h1>
         <p className="text-muted-foreground mt-1">
           Manage your API keys and AI preferences
@@ -227,7 +234,7 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="apiKey">API Key</Label>
+            <Label htmlFor="apiKey" className="dark:text-neutral-200">API Key</Label>
             <div className="flex gap-2">
               <Input
                 id="apiKey"
@@ -251,7 +258,7 @@ export default function SettingsPage() {
                 )}
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-neutral-500 dark:text-neutral-300">
               Your API key is stored securely and never shared
             </p>
           </div>
