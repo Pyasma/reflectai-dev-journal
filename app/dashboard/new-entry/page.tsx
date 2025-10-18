@@ -501,7 +501,7 @@ export default function NewEntryPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>Technical Details</Label>
+                  <Label className="dark:text-neutral-200">Technical Details</Label>
                   <Textarea
                     value={aiTechnicalDetails}
                     onChange={(e) => setAiTechnicalDetails(e.target.value)}
