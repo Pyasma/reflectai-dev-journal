@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Footer } from "@/components/layout/Footer";
-import { SimpleNavbar } from "@/components/layout/SimpleNavbar";
-import { FullNavbar } from "@/components/layout/FullNavbar";
+import { NavbarWrapper } from "@/components/layout/NavbarWrapper";
 import { createClient } from '@/lib/supabase/server';
-import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
   title: "ReflectAI - Developer Journal",
@@ -33,25 +31,10 @@ export default async function RootLayout({
     profile = profileData;
   }
 
-  // Get current pathname to determine which navbar to show
-  const headersList = await headers();
-  const pathname = headersList.get('x-pathname') || headersList.get('referer') || '';
-  
-  // Determine if we should show the simple navbar (theme toggle only)
-  // Simple navbar for: landing page (/), settings page (/settings)
-  // Full navbar for: dashboard, statistics, profile pages when authenticated
-  const isLandingPage = pathname === '/' || pathname.endsWith('/');
-  const isSettingsPage = pathname.includes('/settings');
-  const showSimpleNavbar = !user || isLandingPage || isSettingsPage;
-
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        {showSimpleNavbar ? (
-          <SimpleNavbar />
-        ) : (
-          <FullNavbar user={user} profile={profile} />
-        )}
+        <NavbarWrapper user={user} profile={profile} />
         <main className="flex-1">
           {children}
         </main>
