@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {
   BookOpen,
@@ -9,8 +12,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 interface FullNavbarProps {
   user: any;
@@ -20,12 +22,14 @@ interface FullNavbarProps {
   } | null;
 }
 
-export async function FullNavbar({ user, profile }: FullNavbarProps) {
+export function FullNavbar({ user, profile }: FullNavbarProps) {
+  const router = useRouter();
+
   const handleSignOut = async () => {
-    'use server';
-    const supabase = await createClient();
+    const supabase = createClient();
     await supabase.auth.signOut();
-    redirect('/');
+    router.push('/');
+    router.refresh();
   };
 
   return (
@@ -70,11 +74,9 @@ export async function FullNavbar({ user, profile }: FullNavbarProps) {
                     <Settings className="h-5 w-5" />
                   </Button>
                 </Link>
-                <form action={handleSignOut}>
-                  <Button variant="ghost" size="icon" type="submit">
-                    <LogOut className="h-5 w-5" />
-                  </Button>
-                </form>
+                <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                  <LogOut className="h-5 w-5" />
+                </Button>
                 {profile?.github_avatar_url && (
                   <Link href="/profile" className="cursor-pointer">
                     <img
