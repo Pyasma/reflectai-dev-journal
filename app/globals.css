@@ -79,7 +79,6 @@
 .glass-card {
   background: rgba(26, 26, 31, 0.85); /* More opaque, better contrast */
   backdrop-filter: blur(24px) saturate(180%);
-  color: black;
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1.5px solid rgba(167, 139, 250, 0.3);
   box-shadow: 
