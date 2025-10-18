@@ -52,7 +52,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        <header className="border-b border-[rgba(167,139,250,0.2)] dark:bg-card/50 bg-white/50 backdrop-blur-md">
+        <header className="border-b border-[rgba(167,139,250,0.2)] dark:bg-background bg-background">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
