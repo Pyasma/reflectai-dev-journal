@@ -23,6 +23,11 @@ export function NavbarWrapper({ user, profile, handleSignOut }: NavbarWrapperPro
     return <SettingsNavbar />;
   }
 
+  // Entry pages: Logo + Theme toggle (no navigation buttons)
+  if (pathname.startsWith('/dashboard/new-entry') || pathname.startsWith('/dashboard/edit/')) {
+    return <SimpleNavbar />;
+  }
+
   // All other pages: Full navbar with navigation and user menu
   return <FullNavbar user={user} profile={profile} handleSignOut={handleSignOut} />;
 }
