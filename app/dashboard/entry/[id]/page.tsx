@@ -101,7 +101,7 @@ export default async function EntryDetailPage({ params }: PageProps) {
                 <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
                   SUMMARY
                 </h2>
-                <p className="text-neutral-100 dark:text-neutral-100 leading-relaxed">
+                <p className="text-neutral-800 dark:text-neutral-800 leading-relaxed">
                   {entry.ai_summary}
                 </p>
               </CardContent>
@@ -116,7 +116,7 @@ export default async function EntryDetailPage({ params }: PageProps) {
                   TECHNICAL DETAILS
                 </h2>
                 <div
-                  className="prose prose-sm dark:prose-invert dark:text-neutral-100 max-w-none"
+                  className="prose prose-sm dark:prose-invert dark:text-neutral-800 max-w-none"
                   dangerouslySetInnerHTML={{ __html: entry.ai_technical_details }}
                 />
               </CardContent>
