@@ -200,12 +200,6 @@ export default function SettingsPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <Link href="/dashboard" className="inline-flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity">
-          <BookOpen className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold bg-gradient-to-r from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
-            ReflectAI
-          </span>
-        </Link>
         <h1 className="text-3xl font-bold">Settings</h1>
         <p className="text-muted-foreground mt-1">
           Manage your API keys and AI preferences
