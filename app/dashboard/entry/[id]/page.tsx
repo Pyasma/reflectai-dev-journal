@@ -52,19 +52,6 @@ export default async function EntryDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Fixed Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between px-4">
-          <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <BookOpen className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold bg-gradient-to-r from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
-              ReflectAI
-            </span>
-          </Link>
-          <ThemeToggle />
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="flex-1">
         <div className="container max-w-[900px] mx-auto px-4 py-6 md:py-10">
@@ -114,7 +101,7 @@ export default async function EntryDetailPage({ params }: PageProps) {
                 <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
                   SUMMARY
                 </h2>
-                <p className="text-neutral-300 leading-relaxed">
+                <p className="text-neutral-100 dark:text-neutral-100 leading-relaxed">
                   {entry.ai_summary}
                 </p>
               </CardContent>
@@ -129,7 +116,7 @@ export default async function EntryDetailPage({ params }: PageProps) {
                   TECHNICAL DETAILS
                 </h2>
                 <div
-                  className="prose prose-sm dark:prose-invert dark:text-neutral-300 max-w-none"
+                  className="prose prose-sm dark:prose-invert dark:text-neutral-100 max-w-none"
                   dangerouslySetInnerHTML={{ __html: entry.ai_technical_details }}
                 />
               </CardContent>
