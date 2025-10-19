@@ -67,7 +67,7 @@ export function EntryCard({ entry }: EntryCardProps) {
                 {entry.user_message}
               </h3>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm group-hover:text-primary transition-colors duration-300">
+            <div className="flex items-center gap-2 text-purple-400 text-sm group-hover:text-primary transition-colors duration-300">
               <Calendar className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
               <time dateTime={entry.session_date}>
                 {format(sessionDate, 'MMM d, yyyy')}
@@ -79,7 +79,7 @@ export function EntryCard({ entry }: EntryCardProps) {
         <CardContent className="relative z-10">
           {entry.ai_summary && (
             <div className="mb-4 animate-fade-in-up">
-              <h4 className="font-medium text-sm mb-2 text-muted-foreground group-hover:text-primary/80 transition-colors duration-300">Summary</h4>
+              <h4 className="font-medium text-sm mb-2 text-purple-400 group-hover:text-primary/80 transition-colors duration-300">Summary</h4>
               <p className="text-sm line-clamp-3 leading-relaxed">{entry.ai_summary}</p>
             </div>
           )}
