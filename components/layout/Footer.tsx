@@ -9,7 +9,7 @@ export function Footer() {
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Made by</span>
             <Link
-              href="https://compyle.com"
+              href="https://compyle.ai"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent hover:from-[#C084FC] hover:to-[#A78BFA] transition-all duration-300"
