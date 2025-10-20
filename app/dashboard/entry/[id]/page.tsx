@@ -1,12 +1,23 @@
-import { createClient } from '@/lib/supabase/server';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { BookOpen, GitCommit, Edit, Trash2 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { BookOpen, GitCommit, Edit, Trash2, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { notFound } from 'next/navigation';
-import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { useToast } from '@/hooks/use-toast';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -18,35 +29,93 @@ const commandTypeColors = {
   planning: 'bg-purple-500/20 dark:bg-purple-500/30 text-purple-700 dark:text-purple-400 border-purple-500/40',
 };
 
-export default async function EntryDetailPage({ params }: PageProps) {
-  const { id } = await params;
-  const supabase = await createClient();
+export default function EntryDetailPage({ params }: PageProps) {
+  const router = useRouter();
+  const { toast } = useToast();
+  const supabase = createClient();
+  
+  const [entryId, setEntryId] = useState<string>('');
+  const [entry, setEntry] = useState<any>(null);
+  const [commits, setCommits] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // Fetch the journal entry
-  const { data: entry, error: entryError } = await supabase
-    .from('journal_entries')
-    .select(`
-      *,
-      repositories (
-        id,
-        name,
-        full_name,
-        language
-      )
-    `)
-    .eq('id', id)
-    .single();
+  useEffect(() => {
+    async function fetchData() {
+      const resolvedParams = await params;
+      const id = resolvedParams.id;
+      setEntryId(id);
 
-  if (entryError || !entry) {
-    notFound();
+      // Fetch the journal entry
+      const { data: entryData, error: entryError } = await supabase
+        .from('journal_entries')
+        .select(`
+          *,
+          repositories (
+            id,
+            name,
+            full_name,
+            language
+          )
+        `)
+        .eq('id', id)
+        .single();
+
+      if (entryError || !entryData) {
+        router.push('/dashboard');
+        return;
+      }
+
+      // Fetch commits associated with this entry
+      const { data: commitsData } = await supabase
+        .from('entry_commits')
+        .select('commit_sha, commit_message, commit_author, commit_date')
+        .eq('entry_id', id)
+        .order('commit_date', { ascending: false });
+
+      setEntry(entryData);
+      setCommits(commitsData || []);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, [params]);
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+
+    const { error } = await supabase
+      .from('journal_entries')
+      .delete()
+      .eq('id', entryId);
+
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to delete entry. Please try again.',
+        variant: 'destructive',
+      });
+      setIsDeleting(false);
+      return;
+    }
+
+    toast({
+      title: 'Success',
+      description: 'Entry deleted successfully',
+    });
+
+    setIsDeleteModalOpen(false);
+    router.push('/dashboard');
+  };
+
+  if (isLoading || !entry) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-muted-foreground">Loading...</div>
+      </div>
+    );
   }
-
-  // Fetch commits associated with this entry
-  const { data: commits } = await supabase
-    .from('entry_commits')
-    .select('commit_sha, commit_message, commit_author, commit_date')
-    .eq('entry_id', id)
-    .order('commit_date', { ascending: false });
 
   const sessionDate = new Date(entry.session_date);
 
@@ -188,13 +257,55 @@ export default async function EntryDetailPage({ params }: PageProps) {
                 Edit Entry
               </Button>
             </Link>
-            <Button variant="outline" size="lg">
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => setIsDeleteModalOpen(true)}
+            >
               <Trash2 className="h-4 w-4 mr-2" />
               Delete
             </Button>
           </div>
         </div>
       </main>
+
+      {/* Delete Confirmation Modal */}
+      <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Entry</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this entry? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteModalOpen(false)}
+              disabled={isDeleting}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDelete}
+              disabled={isDeleting}
+            >
+              {isDeleting ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Deleting...
+                </>
+              ) : (
+                <>
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete
+                </>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
