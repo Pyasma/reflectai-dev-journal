@@ -46,7 +46,7 @@ export default async function DashboardPage() {
       {/* Header with animations */}
       <div className="flex items-center justify-between animate-fade-in-down">
         <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-br from-foreground to-primary bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent">
             Your Development Journal
           </h1>
           <p className="text-muted-foreground mt-1 animate-fade-in-up animation-delay-100">
