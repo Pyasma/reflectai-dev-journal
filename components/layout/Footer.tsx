@@ -2,34 +2,19 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-[rgba(167,139,250,0.2)] dark:border-[rgba(167,139,250,0.2)] mt-auto">
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="w-full border-t border-primary/10 mt-auto bg-gray-50 dark:bg-[#0F0A08]">
+      <div className="container mx-auto px-4 py-10">
+        <div className="flex flex-col items-center justify-center gap-4">
           {/* Made by Compyle */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Made by</span>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-gray-400 dark:text-gray-500">Made by</span>
             <Link
               href="https://compyle.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent hover:from-[#C084FC] hover:to-[#A78BFA] transition-all duration-300"
+              className="font-semibold bg-gradient-to-br from-[#F97316] to-[#EAB308] bg-clip-text text-transparent hover:from-[#EAB308] hover:to-[#F97316] transition-all duration-300"
             >
               Compyle
-            </Link>
-          </div>
-
-          {/* Footer Links */}
-          <div className="flex items-center gap-4 text-sm">
-            <Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
-              Privacy
-            </Link>
-            <div className="w-px h-4 bg-[rgba(167,139,250,0.2)]" />
-            <Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">
-              Terms
-            </Link>
-            <div className="w-px h-4 bg-[rgba(167,139,250,0.2)]" />
-            <Link href="/support" className="text-muted-foreground hover:text-primary transition-colors">
-              Support
             </Link>
           </div>
         </div>

@@ -12,53 +12,53 @@
     --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
-    --primary: 262 83% 75%; /* #A78BFA */
+    --primary: 25 95% 53%; /* #F97316 - Vibrant Orange */
     --primary-foreground: 0 0% 100%;
     --secondary: 220 14% 96%;
     --secondary-foreground: 0 0% 10%;
     --muted: 220 13% 91%;
     --muted-foreground: 220 9% 46%;
-    --accent: 262 83% 75%;
+    --accent: 45 93% 47%; /* #EAB308 - Golden Yellow */
     --accent-foreground: 0 0% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 262 83% 75%;
+    --ring: 25 95% 53%;
     --radius: 0.5rem;
-    --chart-1: 262 83% 75%;
-    --chart-2: 262 83% 80%;
-    --chart-3: 262 83% 70%;
-    --chart-4: 262 83% 85%;
-    --chart-5: 262 83% 65%;
+    --chart-1: 25 95% 53%; /* Orange */
+    --chart-2: 45 93% 47%; /* Yellow */
+    --chart-3: 15 90% 55%; /* Red-Orange */
+    --chart-4: 35 91% 50%; /* Amber */
+    --chart-5: 50 95% 55%; /* Gold */
   }
 
   .dark {
-    --background: 240 10% 5.5%; /* #0E0E11 */
-    --foreground: 262 83% 75%; /* Amethyst #A78BFA for primary text */
-    --foreground-body: 262 83% 75%; /* Amethyst #A78BFA for body text */
-    --card: 240 6% 10%; /* #1A1A1F */
+    --background: 20 10% 4%; /* #0F0A08 - Warm dark background */
+    --foreground: 25 95% 60%; /* Orange tinted text */
+    --foreground-body: 25 95% 60%;
+    --card: 20 8% 10%; /* #1A1512 - Warm dark card */
     --card-foreground: 220 13% 91%;
-    --popover: 240 6% 10%;
+    --popover: 20 8% 10%;
     --popover-foreground: 220 13% 91%;
-    --primary: 262 83% 75%; /* #A78BFA */
+    --primary: 25 95% 53%; /* #F97316 - Vibrant Orange */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4% 16%;
+    --secondary: 20 6% 16%;
     --secondary-foreground: 220 13% 91%;
-    --muted: 240 4% 16%;
+    --muted: 20 6% 16%;
     --muted-foreground: 220 9% 66%;
-    --accent: 262 83% 75%;
+    --accent: 45 93% 47%; /* #EAB308 - Golden Yellow */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 262 83% 75%;
-    --chart-1: 262 83% 75%;
-    --chart-2: 262 83% 80%;
-    --chart-3: 262 83% 70%;
-    --chart-4: 262 83% 85%;
-    --chart-5: 262 83% 65%;
+    --border: 20 6% 16%;
+    --input: 20 6% 16%;
+    --ring: 25 95% 53%;
+    --chart-1: 25 95% 53%;
+    --chart-2: 45 93% 47%;
+    --chart-3: 15 90% 55%;
+    --chart-4: 35 91% 50%;
+    --chart-5: 50 95% 55%;
   }
 }
 
@@ -75,44 +75,44 @@
    IMPROVED GLASSMORPHISM - BETTER READABILITY
    ============================================ */
 
-/* Dark mode: Enhanced contrast with solid-tinted glass */
+/* Dark mode: Enhanced contrast with warm-tinted glass */
 .glass-card {
-  background: rgba(26, 26, 31, 0.85); /* More opaque, better contrast */
+  background: rgba(26, 21, 18, 0.85); /* Warm dark, better contrast */
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1.5px solid rgba(167, 139, 250, 0.3);
-  box-shadow: 
+  border: 1.5px solid rgba(249, 115, 22, 0.3);
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(167, 139, 250, 0.2) inset,
-    0 0 30px rgba(138, 106, 245, 0.15);
+    0 0 0 1px rgba(249, 115, 22, 0.2) inset,
+    0 0 30px rgba(249, 115, 22, 0.15);
 }
 
-/* Light mode: Brighter white with better text contrast */
+/* Light mode: Brighter white with warm accent */
 .glass-card-light {
   background: rgba(255, 255, 255, 0.95); /* Much more opaque */
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid rgba(167, 139, 250, 0.25);
+  border: 1.5px solid rgba(249, 115, 22, 0.25);
   box-shadow:
-    0 4px 24px rgba(167, 139, 250, 0.12),
+    0 4px 24px rgba(249, 115, 22, 0.12),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-    0 2px 16px rgba(167, 139, 250, 0.08);
+    0 2px 16px rgba(249, 115, 22, 0.08);
 }
 
 .glass-modal {
-  background: rgba(20, 20, 25, 0.92);
+  background: rgba(20, 16, 14, 0.92);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border: 1.5px solid rgba(167, 139, 250, 0.4);
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(167, 139, 250, 0.2) inset;
+  border: 1.5px solid rgba(249, 115, 22, 0.4);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.2) inset;
 }
 
 .glass-modal-light {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border: 1.5px solid rgba(167, 139, 250, 0.3);
-  box-shadow: 0 8px 40px rgba(167, 139, 250, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  border: 1.5px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 40px rgba(249, 115, 22, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 /* ============================================
@@ -120,35 +120,35 @@
    ============================================ */
 
 .glow-primary {
-  box-shadow: 0 4px 20px rgba(162, 132, 249, 0.4), 0 0 24px rgba(162, 132, 249, 0.25);
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4), 0 0 24px rgba(249, 115, 22, 0.25);
 }
 
 .glow-primary-hover {
-  box-shadow: 0 8px 32px rgba(162, 132, 249, 0.6), 0 0 48px rgba(162, 132, 249, 0.4);
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.6), 0 0 48px rgba(234, 179, 8, 0.4);
 }
 
 .glow-outline {
-  box-shadow: 0 0 24px rgba(162, 132, 249, 0.25);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 0.25);
 }
 
 .glow-outline-hover {
-  box-shadow: 0 0 40px rgba(162, 132, 249, 0.5), 0 4px 20px rgba(162, 132, 249, 0.3);
+  box-shadow: 0 0 40px rgba(249, 115, 22, 0.5), 0 4px 20px rgba(234, 179, 8, 0.3);
 }
 
 .glow-focus {
-  box-shadow: 0 0 0 3px rgba(162, 132, 249, 0.3);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
 }
 
 .glow-badge {
-  box-shadow: 0 0 16px rgba(162, 132, 249, 0.25), 0 2px 8px rgba(162, 132, 249, 0.15);
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.25), 0 2px 8px rgba(234, 179, 8, 0.15);
 }
 
 .glow-inner-light {
-  box-shadow: inset 0 2px 12px rgba(167, 139, 250, 0.18), 0 4px 16px rgba(167, 139, 250, 0.1);
+  box-shadow: inset 0 2px 12px rgba(249, 115, 22, 0.18), 0 4px 16px rgba(234, 179, 8, 0.1);
 }
 
 /* ============================================
-   ANIMATIONS - EXTENSIVE COLLECTION
+   ANIMATIONS - MINIMAL COLLECTION
    ============================================ */
 
 /* Fade In Animations */
@@ -172,51 +172,7 @@
   }
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* Scale Animations */
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @keyframes scaleInCenter {
   from {
     opacity: 0;
@@ -225,44 +181,6 @@
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-/* Slide Animations */
-@keyframes slideInUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInDown {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-/* Float Animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
   }
 }
 
@@ -276,66 +194,27 @@
   }
 }
 
-@keyframes pulseGlow {
+/* Minimal pulse for AI dot indicator */
+@keyframes pulse-dot {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(162, 132, 249, 0.3);
+    opacity: 0.5;
   }
   50% {
-    box-shadow: 0 0 40px rgba(162, 132, 249, 0.6);
+    opacity: 1.0;
   }
 }
 
-/* Shimmer Animation */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
-}
+/* HEAVY ANIMATIONS DISABLED - Minimal design approach
+The following animations are disabled to reduce visual noise:
+- float, floatSlow (replaced with static elements)
+- bounce (replaced with subtle interactions)
+- shimmer, ripple (removed for cleaner UI)
+- pulseGlow, rotate (removed for minimal aesthetic)
+- gradientShift (removed for static gradients)
 
-/* Ripple Effect */
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-/* Bounce Animation */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Rotate Animation */
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Gradient Animation */
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
+If needed, these can be re-enabled, but the new design philosophy
+emphasizes purposeful motion over decorative animation.
+*/
 
 /* ============================================
    ANIMATION UTILITY CLASSES
@@ -346,47 +225,20 @@
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.animate-fade-in-down {
-  animation: fadeInDown 0.6s ease-out;
-}
-
-.animate-fade-in-left {
-  animation: fadeInLeft 0.6s ease-out;
-}
-
-.animate-fade-in-right {
-  animation: fadeInRight 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.5s ease-out;
+  animation: fadeInUp 0.6s ease-out both;
 }
 
 .animate-scale-in-center {
   animation: scaleInCenter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: floatSlow 6s ease-in-out infinite;
-}
-
 .animate-pulse {
   animation: pulse 2s ease-in-out infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 2s ease-in-out infinite;
-}
-
-.animate-bounce {
-  animation: bounce 1s ease-in-out infinite;
+/* Minimal pulse for AI dot indicator */
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 
 /* Stagger delay utilities */
@@ -411,103 +263,44 @@
 }
 
 /* ============================================
-   HOVER EFFECTS
+   HOVER EFFECTS - MINIMAL
    ============================================ */
 
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-}
-
-.hover-lift-subtle {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift-subtle:hover {
-  transform: translateY(-4px);
-}
-
-.hover-glow {
-  transition: box-shadow 0.3s ease;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 30px rgba(167, 139, 250, 0.4), 0 0 60px rgba(167, 139, 250, 0.2);
-}
-
+/* Minimal scale for buttons - barely noticeable */
 .hover-scale {
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.2s ease;
 }
 
 .hover-scale:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
+
+/* Heavy hover effects removed for minimal design:
+- hover-lift, hover-lift-subtle (replaced with static elements)
+- hover-glow (removed for cleaner interactions)
+Kept only minimal scale effect for buttons
+*/
 
 /* ============================================
-   SHIMMER & SPECIAL EFFECTS
+   NEW UTILITY CLASSES FOR LANDING PAGE
    ============================================ */
 
-.shimmer-effect {
-  position: relative;
-  overflow: hidden;
+/* AI Grid Background Pattern */
+.ai-grid-bg {
+  background-image:
+    linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.4;
 }
 
-.shimmer-effect::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.3) 50%,
-    transparent 70%
-  );
-  animation: shimmer 2s infinite;
-  pointer-events: none;
+/* Floating Orb - Soft warm ambient glow */
+.floating-orb {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15), rgba(234, 179, 8, 0.1), transparent 70%);
+  filter: blur(40px);
 }
 
-.shimmer-effect-outline::before {
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(167, 139, 250, 0.3) 50%,
-    transparent 70%
-  );
-  animation: shimmer 2.5s infinite;
-}
-
-/* Ripple Button Effect */
-.ripple-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple-effect::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.ripple-effect:active::after {
-  width: 300px;
-  height: 300px;
-  opacity: 0;
-  transition: width 0.6s, height 0.6s, opacity 0.6s;
-}
+/* Shimmer and ripple effects removed for minimal design */
 
 /* ============================================
    GRADIENT BORDER
@@ -525,7 +318,7 @@
   inset: 0;
   border-radius: 12px;
   padding: 1.5px;
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0.6) 0%, rgba(192, 132, 252, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.6) 0%, rgba(234, 179, 8, 0.6) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -538,69 +331,8 @@
 }
 
 /* ============================================
-   FLOATING PARTICLES BACKGROUND
+   FLOATING PARTICLES BACKGROUND - REMOVED
    ============================================ */
-
-@keyframes particleFloat1 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(30px, -30px) rotate(120deg);
-  }
-  66% {
-    transform: translate(-20px, 20px) rotate(240deg);
-  }
-}
-
-@keyframes particleFloat2 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(-40px, 40px) rotate(120deg);
-  }
-  66% {
-    transform: translate(30px, -20px) rotate(240deg);
-  }
-}
-
-@keyframes particleFloat3 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(20px, 20px) scale(1.2);
-  }
-}
-
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, rgba(167, 139, 250, 0) 70%);
-  pointer-events: none;
-}
-
-.particle-1 {
-  width: 100px;
-  height: 100px;
-  top: 10%;
-  left: 10%;
-  animation: particleFloat1 20s ease-in-out infinite;
-}
-
-.particle-2 {
-  width: 150px;
-  height: 150px;
-  top: 60%;
-  right: 10%;
-  animation: particleFloat2 25s ease-in-out infinite;
-}
-
-.particle-3 {
-  width: 80px;
-  height: 80px;
-  bottom: 20%;
-  left: 50%;
-  animation: particleFloat3 18s ease-in-out infinite;
-}
+/* Floating particle animations removed for minimal design.
+Replaced with static AI grid background and single floating orb.
+*/
