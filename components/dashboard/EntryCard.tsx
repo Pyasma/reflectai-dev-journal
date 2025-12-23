@@ -86,9 +86,9 @@ export function EntryCard({ entry }: EntryCardProps) {
 
           {entry.ai_technical_details && (
             <div className="mb-4 animate-fade-in-up animation-delay-100">
-              <h4 className="font-medium text-sm mb-2 text-muted-foreground dark:text-neutral-200 group-hover:text-primary/80 transition-colors duration-300">Technical Details</h4>
+              <h4 className="font-medium text-sm mb-2 text-muted-foreground group-hover:text-primary/80 transition-colors duration-300">Technical Details</h4>
               <div
-                className="text-sm line-clamp-4 prose prose-sm max-w-none dark:prose-invert dark:text-neutral-300"
+                className="text-sm line-clamp-4 prose prose-sm max-w-none dark:prose-invert text-card-foreground"
                 dangerouslySetInnerHTML={{ __html: entry.ai_technical_details }}
               />
             </div>

@@ -84,12 +84,12 @@ export default async function EntryDetailPage({ params }: PageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-semibold text-neutral-200 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-semibold text-foreground leading-tight">
               {entry.user_message}
             </h1>
 
             {/* Date */}
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-muted-foreground">
               {format(sessionDate, 'MMMM d, yyyy')}
             </p>
           </div>
@@ -98,10 +98,10 @@ export default async function EntryDetailPage({ params }: PageProps) {
           {entry.ai_summary && (
             <Card className="mb-6">
               <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
                   SUMMARY
                 </h2>
-                <p className="text-neutral-800 dark:text-neutral-800 leading-relaxed">
+                <p className="text-card-foreground leading-relaxed">
                   {entry.ai_summary}
                 </p>
               </CardContent>
@@ -112,11 +112,11 @@ export default async function EntryDetailPage({ params }: PageProps) {
           {entry.ai_technical_details && (
             <Card className="mb-6">
               <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
                   TECHNICAL DETAILS
                 </h2>
                 <div
-                  className="prose prose-sm dark:prose-invert dark:text-neutral-800 max-w-none"
+                  className="prose prose-sm dark:prose-invert text-card-foreground max-w-none"
                   dangerouslySetInnerHTML={{ __html: entry.ai_technical_details }}
                 />
               </CardContent>
@@ -127,11 +127,11 @@ export default async function EntryDetailPage({ params }: PageProps) {
           {entry.user_lessons_learned && (
             <Card className="mb-6">
               <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
                   LESSONS LEARNED
                 </h2>
                 <div
-                  className="prose prose-sm dark:prose-invert dark:text-neutral-300 max-w-none"
+                  className="prose prose-sm dark:prose-invert text-card-foreground max-w-none"
                   dangerouslySetInnerHTML={{ __html: entry.user_lessons_learned }}
                 />
               </CardContent>
@@ -142,11 +142,11 @@ export default async function EntryDetailPage({ params }: PageProps) {
           {entry.user_next_steps && (
             <Card className="mb-6">
               <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
                   NEXT STEPS
                 </h2>
                 <div
-                  className="prose prose-sm dark:prose-invert dark:text-neutral-300 max-w-none"
+                  className="prose prose-sm dark:prose-invert text-card-foreground max-w-none"
                   dangerouslySetInnerHTML={{ __html: entry.user_next_steps }}
                 />
               </CardContent>
@@ -157,7 +157,7 @@ export default async function EntryDetailPage({ params }: PageProps) {
           {commits && commits.length > 0 && (
             <Card className="mb-6">
               <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-200 mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
                   COMMITS
                 </h2>
                 <div className="space-y-3">
@@ -169,7 +169,7 @@ export default async function EntryDetailPage({ params }: PageProps) {
                       <GitCommit className="h-4 w-4 mt-0.5 text-muted-foreground flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{commit.commit_message}</p>
-                        <p className="text-xs text-neutral-400 mt-1">
+                        <p className="text-xs text-muted-foreground mt-1">
                           {commit.commit_author} • {format(new Date(commit.commit_date), 'MMM d, yyyy')}
                         </p>
                       </div>
