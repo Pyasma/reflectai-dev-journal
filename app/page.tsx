@@ -3,11 +3,9 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { createClient } from '@/lib/supabase/client';
-import { Github, BookOpen, Sparkles, TrendingUp, AlertCircle } from 'lucide-react';
-import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { Github, AlertCircle } from 'lucide-react';
 
 function LandingPageContent() {
   const searchParams = useSearchParams();
@@ -75,12 +73,12 @@ function LandingPageContent() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-background via-background to-[rgba(58, 29, 147, 0.05)] overflow-hidden">
-      {/* Floating Particles Background */}
-      <div className="particle particle-1" />
-      <div className="particle particle-2" />
-      <div className="particle particle-3" />
-      
+    <main className="relative min-h-screen bg-gradient-to-b from-gray-50 via-orange-50/30 to-gray-50 dark:from-[#0F0A08] dark:via-[#1A0F08] dark:to-[#0F0A08] overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 ai-grid-bg pointer-events-none opacity-30 dark:opacity-100" />
+      <div className="absolute top-[10%] right-[15%] w-[500px] h-[500px] floating-orb opacity-30 dark:opacity-60 pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[10%] w-[400px] h-[400px] floating-orb opacity-20 dark:opacity-40 pointer-events-none" />
+
       {/* OAuth Misconfiguration Modal */}
       <Dialog open={showOAuthError} onOpenChange={(open) => {
         if (!open) handleCloseOAuthError();
@@ -102,7 +100,7 @@ function LandingPageContent() {
               <p className="text-sm font-semibold mb-2 text-foreground">Expected Callback URL:</p>
               <div className="p-3 bg-muted rounded-md border border-border">
                 <code className="text-sm font-mono text-foreground break-all">
-                  {process.env.NEXT_PUBLIC_SUPABASE_URL 
+                  {process.env.NEXT_PUBLIC_SUPABASE_URL
                     ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/callback`
                     : 'https://your-project.supabase.co/auth/v1/callback'}
                 </code>
@@ -119,7 +117,7 @@ function LandingPageContent() {
               <p className="text-sm font-semibold mb-2 text-foreground">GitHub Redirected To:</p>
               <div className="p-3 bg-destructive/10 rounded-md border border-destructive/50">
                 <code className="text-sm font-mono text-destructive break-all">
-                  {typeof window !== 'undefined' 
+                  {typeof window !== 'undefined'
                     ? `${window.location.origin}/?code=${detectedCode?.substring(0, 8)}...`
                     : 'http://localhost:3000/?code=...'}
                 </code>
@@ -132,9 +130,9 @@ function LandingPageContent() {
               <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
                 <li>
                   Go to{' '}
-                  <a 
-                    href="https://github.com/settings/developers" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/settings/developers"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
@@ -153,105 +151,177 @@ function LandingPageContent() {
               onClick={() => {
                 window.open('/SETUP_GUIDE.md', '_blank');
               }}
-              className="hover-scale"
             >
               View Full Setup Guide
             </Button>
-            <Button onClick={handleCloseOAuthError} className="hover-scale">
+            <Button onClick={handleCloseOAuthError}>
               Got It
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <div className="relative z-10 container mx-auto px-4 py-16">
-        {/* Main Header - Animated */}
-        <header className="text-center mb-16 animate-fade-in-up">
-          <div className="flex items-center justify-center mb-6">
-            <BookOpen className="h-12 w-12 text-primary mr-3 animate-float" />
-            <h1 className="text-5xl font-bold bg-gradient-to-br from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
-              ReflectAI
-            </h1>
+      {/* Hero Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-8 pt-12 pb-32">
+        <div className="text-center mb-16">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-8">
+            <svg className="w-4 h-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+            <span className="text-sm text-orange-500 font-medium">AI-Powered Development Journal</span>
           </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animation-delay-100">
-            Your AI-powered development journal that automatically logs and reflects on your coding sessions
+
+          {/* Main Headline */}
+          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+            Never lose track of<br />
+            <span className="bg-gradient-to-r from-[#F97316] via-[#EAB308] to-[#F97316] bg-clip-text text-transparent">
+              your coding progress
+            </span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-xl text-gray-600 dark:text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+            ReflectAI automatically transforms your commits into meaningful insights. Focus on building, we'll handle the documentation.
           </p>
-        </header>
 
-        {/* Error Alert */}
-        {error && (
-          <div className="max-w-md mx-auto mb-8 animate-scale-in">
-            <Card className="border-destructive/50 bg-destructive/10 glass-card-light dark:glass-card">
-              <CardContent className="flex items-center gap-3 p-4">
-                <AlertCircle className="h-5 w-5 text-destructive animate-pulse" />
-                <p className="text-sm text-destructive">{error}</p>
-              </CardContent>
-            </Card>
+          {/* CTA */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <a href="/dashboard">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#F97316] via-[#EAB308] to-[#F97316] text-white font-semibold px-8 py-6 text-base rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all duration-200"
+              >
+                <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Connect to Github
+              </Button>
+            </a>
           </div>
-        )}
 
-        {/* CTA Card - Animated */}
-        <Card className="max-w-md mx-auto mb-16 glass-card-light dark:glass-card glow-inner-light hover-lift animate-fade-in-up animation-delay-200">
-          <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-semibold mb-4 text-primary">Get Started</h2>
-            <p className="text-muted-foreground mb-6">
-              Sign in with GitHub to start tracking your development journey
-            </p>
-            <Button
-              onClick={handleGitHubLogin}
-              disabled={isLoading}
-              size="lg"
-              className="w-full ripple-effect hover-scale hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(167,139,250,0.4)] transition-all duration-300"
-            >
-              <Github className="mr-2 h-5 w-5" />
-              {isLoading ? 'Connecting...' : 'Sign in with GitHub'}
-            </Button>
-            <p className="text-xs text-muted-foreground mt-4">
-              We only access your public repositories
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Features - Stagger Animated */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <Card className="hover-lift hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(167,139,250,0.25)] transition-all duration-500 animate-fade-in-up animation-delay-300 hover:border-primary/30 group">
-            <CardContent className="p-6">
-              <Sparkles className="h-10 w-10 text-primary mb-4 animate-pulse group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                AI-Powered Summaries
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Gemini AI generates comprehensive summaries of your coding sessions, extracting technical details and insights
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-lift hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(167,139,250,0.25)] transition-all duration-500 animate-fade-in-up animation-delay-400 hover:border-primary/30 group">
-            <CardContent className="p-6">
-              <BookOpen className="h-10 w-10 text-primary mb-4 animate-float group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                Manual Control
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Create journal entries on your terms. Select commits, add context, and let AI help document your work
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="hover-lift hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(167,139,250,0.25)] transition-all duration-500 animate-fade-in-up animation-delay-500 hover:border-primary/30 group">
-            <CardContent className="p-6">
-              <TrendingUp className="h-10 w-10 text-primary mb-4 animate-bounce group-hover:scale-110 transition-transform duration-300" />
-              <h3 className="text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                Track Progress
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Visualize your development journey with timeline views, statistics, and searchable journal entries
-              </p>
-            </CardContent>
-          </Card>
+          {/* Trust Badge */}
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-white/40">
+            <svg className="w-4 h-4 text-orange-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+            </svg>
+            <span>Powered by Google Gemini AI</span>
+          </div>
         </div>
-      </div>
-    </div>
+
+        {/* Hero Visual - Enhanced AI Window */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-yellow-500/30 to-orange-500/20 blur-3xl -z-10" />
+
+            {/* Main card */}
+            <div className="relative bg-white dark:bg-[#1C1410] backdrop-blur-xl border border-orange-500/30 rounded-2xl p-8 shadow-2xl shadow-orange-500/10">
+              {/* Window header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-gray-300 font-mono">reflectai-terminal</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-orange-500/20 border border-orange-500/30">
+                  <div className="w-2 h-2 rounded-full bg-orange-500 pulse-dot" />
+                  <span className="text-xs text-orange-500 font-medium">AI Analyzing</span>
+                </div>
+              </div>
+
+              {/* Terminal content */}
+              <div className="space-y-4 font-mono text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="text-orange-500 font-bold">$</span>
+                  <div className="flex-1">
+                    <p className="text-gray-800 dark:text-gray-100 mb-2">git log --oneline -1</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs">abc1234 feat: implement user authentication flow</p>
+                  </div>
+                </div>
+
+                <div className="h-px bg-orange-500/20" />
+
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-500 text-base">✨</span>
+                  <div className="flex-1 space-y-2">
+                    <p className="text-gray-600 dark:text-gray-400 text-xs">AI Summary Generated:</p>
+                    <div className="bg-orange-500/10 rounded-lg p-4 border border-orange-500/20">
+                      <p className="text-gray-700 dark:text-gray-200 text-xs leading-relaxed">
+                        Implemented OAuth 2.0 authentication with JWT tokens. Added login/logout routes,
+                        session management, and protected route middleware. Integrated with NextAuth for
+                        seamless GitHub authentication.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="relative z-10 max-w-6xl mx-auto px-8 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Everything you need to document your work</h2>
+          <p className="text-lg text-gray-600 dark:text-white/60">Automated documentation that actually makes sense</p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Feature 1 */}
+          <div className="group relative h-full animate-fade-in-up" style={{ animationDelay: '0ms' }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-yellow-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative h-full bg-white/60 dark:bg-[#1A1512]/40 backdrop-blur-sm border border-primary/10 rounded-2xl p-8 hover:border-orange-500/30 hover:-translate-y-2 transition-all duration-300 shadow-lg dark:shadow-none flex flex-col">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#EAB308] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">AI Summaries</h3>
+              <p className="text-gray-600 dark:text-white/60 leading-relaxed flex-grow">
+                Gemini AI analyzes every commit and generates intelligent technical summaries automatically.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="group relative h-full animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-orange-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative h-full bg-white/60 dark:bg-[#1A1512]/40 backdrop-blur-sm border border-primary/10 rounded-2xl p-8 hover:border-yellow-500/30 hover:-translate-y-2 transition-all duration-300 shadow-lg dark:shadow-none flex flex-col">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#EAB308] to-[#F97316] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Manual Control</h3>
+              <p className="text-gray-600 dark:text-white/60 leading-relaxed flex-grow">
+                Add context, edit entries, and maintain full control over what gets documented.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="group relative h-full animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-red-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative h-full bg-white/60 dark:bg-[#1A1512]/40 backdrop-blur-sm border border-primary/10 rounded-2xl p-8 hover:border-amber-500/30 hover:-translate-y-2 transition-all duration-300 shadow-lg dark:shadow-none flex flex-col">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B] to-[#EF4444] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Track Progress</h3>
+              <p className="text-gray-600 dark:text-white/60 leading-relaxed flex-grow">
+                Timeline views and powerful search help you visualize your development journey.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 
