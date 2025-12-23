@@ -187,17 +187,15 @@ function LandingPageContent() {
 
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <a href="/dashboard">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-[#F97316] via-[#EAB308] to-[#F97316] text-white font-semibold px-8 py-6 text-base rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all duration-200"
-              >
-                <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                Connect to Github
-              </Button>
-            </a>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-[#F97316] via-[#EAB308] to-[#F97316] text-white font-semibold px-8 py-6 text-base rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all duration-200"
+              onClick={handleGitHubLogin}
+              disabled={isLoading}
+            >
+              <Github className="mr-2 h-5 w-5" />
+              {isLoading ? 'Connecting...' : 'Connect to Github'}
+            </Button>
           </div>
 
           {/* Trust Badge */}
