@@ -75,8 +75,29 @@
    IMPROVED GLASSMORPHISM - BETTER READABILITY
    ============================================ */
 
-/* Dark mode: Enhanced contrast with warm-tinted glass */
-.glass-card {
+/* Base styles (Light Mode) for Card */
+.glass-card, .glass-card-light {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid rgba(249, 115, 22, 0.25);
+  box-shadow:
+    0 4px 24px rgba(249, 115, 22, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+    0 2px 16px rgba(249, 115, 22, 0.08);
+}
+
+/* Base styles (Light Mode) for Modal */
+.glass-modal, .glass-modal-light {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1.5px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 40px rgba(249, 115, 22, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+}
+
+/* Dark Mode Overrides */
+.dark .glass-card, .dark .glass-card-light {
   background: rgba(26, 21, 18, 0.85); /* Warm dark, better contrast */
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -87,32 +108,12 @@
     0 0 30px rgba(249, 115, 22, 0.15);
 }
 
-/* Light mode: Brighter white with warm accent */
-.glass-card-light {
-  background: rgba(255, 255, 255, 0.95); /* Much more opaque */
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid rgba(249, 115, 22, 0.25);
-  box-shadow:
-    0 4px 24px rgba(249, 115, 22, 0.12),
-    0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-    0 2px 16px rgba(249, 115, 22, 0.08);
-}
-
-.glass-modal {
+.dark .glass-modal, .dark .glass-modal-light {
   background: rgba(20, 16, 14, 0.92);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   border: 1.5px solid rgba(249, 115, 22, 0.4);
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.2) inset;
-}
-
-.glass-modal-light {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border: 1.5px solid rgba(249, 115, 22, 0.3);
-  box-shadow: 0 8px 40px rgba(249, 115, 22, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 /* ============================================
