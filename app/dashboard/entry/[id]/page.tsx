@@ -12,6 +12,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+// Trying again
 const commandTypeColors = {
   development: 'bg-blue-500/20 dark:bg-blue-500/30 text-blue-700 dark:text-blue-400 border-blue-500/40',
   maintenance: 'bg-yellow-500/20 dark:bg-yellow-500/30 text-yellow-700 dark:text-yellow-400 border-yellow-500/40',
