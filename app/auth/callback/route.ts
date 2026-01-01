@@ -9,6 +9,8 @@ export async function GET(request: NextRequest) {
 
   // The destination path after successful authentication
   const dashboardPath = '/dashboard';
+
+  // Are We doing it or not 
   
   // CRITICAL: Append a bypass flag to prevent middleware issues on first load
   const finalRedirectURL = `${origin}${dashboardPath}?auth-bypass=true`;
