@@ -56,7 +56,7 @@ export default async function DashboardPage() {
         <Link href="/dashboard/new-entry" className="animate-fade-in-left animation-delay-100">
           <Button 
             size="lg"
-            className="hover-scale hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all duration-300"
+            className="hover-scale hover:shadow-xl dark:hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] transition-all duration-300"
           >
             <PlusCircle className="mr-2 h-5 w-5" />
             New Entry
@@ -86,7 +86,7 @@ export default async function DashboardPage() {
               Connect a repository, describe your work, and let AI help you reflect.
             </CardDescription>
             <Link href="/dashboard/new-entry">
-              <Button className="hover-scale hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all duration-300">
+              <Button className="hover-scale hover:shadow-xl dark:hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] transition-all duration-300">
                 <PlusCircle className="mr-2 h-5 w-5" />
                 Create First Entry
               </Button>

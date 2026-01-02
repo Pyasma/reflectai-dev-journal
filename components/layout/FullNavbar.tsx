@@ -11,13 +11,13 @@ interface FullNavbarProps {
 
 export function FullNavbar({ user, profile, handleSignOut }: FullNavbarProps) {
   return (
-    <header className="border-b border-[rgba(249,115,22,0.2)] dark:bg-background bg-background">
+    <header className="border-b border-primary/20 dark:bg-background bg-background">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <BookOpen className="h-6 w-6 text-orange-500" />
-            <span className="text-xl font-bold bg-gradient-to-br from-[#F97316] to-[#EAB308] bg-clip-text text-transparent">ReflectAI</span>
+            <BookOpen className="h-6 w-6 text-primary" />
+            <span className="text-xl font-bold bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent">ReflectAI</span>
           </Link>
 
           {/* Navigation Links */}
@@ -62,7 +62,7 @@ export function FullNavbar({ user, profile, handleSignOut }: FullNavbarProps) {
                     <img
                       src={profile.github_avatar_url}
                       alt={profile.github_username || 'User'}
-                      className="h-8 w-8 rounded-full border-2 border-primary ring-2 ring-[rgba(249,115,22,0.3)] hover:ring-[rgba(249,115,22,0.5)] hover:opacity-80 transition-all duration-300"
+                      className="h-8 w-8 rounded-full border-2 border-primary ring-2 ring-primary/30 hover:ring-primary/50 hover:opacity-80 transition-all duration-300"
                       title="View Profile"
                     />
                   </Link>

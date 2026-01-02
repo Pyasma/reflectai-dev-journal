@@ -9,12 +9,12 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-primary/40 bg-primary/20 dark:bg-primary/25 text-primary-foreground dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/35 dark:shadow-[0_0_20px_rgba(249,115,22,0.3)]",
+          "border-primary/40 bg-primary/20 dark:bg-primary/25 text-primary-foreground dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/35 dark:shadow-[0_0_20px_hsl(var(--primary)/0.3)]",
         secondary:
           "border-secondary/40 bg-secondary/80 dark:bg-secondary/60 text-secondary-foreground hover:bg-secondary dark:hover:bg-secondary/70",
         destructive:
           "border-destructive/40 bg-destructive/20 dark:bg-destructive/30 text-destructive-foreground hover:bg-destructive/30 dark:hover:bg-destructive/40",
-        outline: 
+        outline:
           "text-foreground border-border bg-background/60 dark:bg-background/40 hover:bg-accent/20 dark:hover:bg-accent/10",
       },
     },

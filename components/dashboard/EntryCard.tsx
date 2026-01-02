@@ -34,7 +34,7 @@ export function EntryCard({ entry }: EntryCardProps) {
 
   return (
     <Link href={`/dashboard/entry/${entry.id}`} className="block">
-      <Card className="group hover-lift hover:shadow-2xl dark:hover:shadow-[0_20px_60px_rgba(249,115,22,0.3)] transition-all duration-500 hover:border-primary/40 cursor-pointer overflow-hidden">
+      <Card className="group hover-lift hover:shadow-2xl dark:hover:shadow-[0_20px_60px_hsl(var(--primary)/0.3)] transition-all duration-500 hover:border-primary/40 cursor-pointer overflow-hidden">
         {/* Animated gradient overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/3 group-hover:to-primary/5 transition-all duration-500 pointer-events-none" />
         
@@ -67,7 +67,7 @@ export function EntryCard({ entry }: EntryCardProps) {
                 {entry.user_message}
               </h3>
             </div>
-            <div className="flex items-center gap-2 text-orange-400 text-sm group-hover:text-primary transition-colors duration-300">
+            <div className="flex items-center gap-2 text-primary/70 text-sm group-hover:text-primary transition-colors duration-300">
               <Calendar className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
               <time dateTime={entry.session_date}>
                 {format(sessionDate, 'MMM d, yyyy')}
@@ -79,7 +79,7 @@ export function EntryCard({ entry }: EntryCardProps) {
         <CardContent className="relative z-10">
           {entry.ai_summary && (
             <div className="mb-4 animate-fade-in-up">
-              <h4 className="font-medium text-sm mb-2 text-orange-400 group-hover:text-primary/80 transition-colors duration-300">Summary</h4>
+              <h4 className="font-medium text-sm mb-2 text-primary/70 group-hover:text-primary/80 transition-colors duration-300">Summary</h4>
               <p className="text-sm line-clamp-3 leading-relaxed">{entry.ai_summary}</p>
             </div>
           )}
@@ -107,7 +107,7 @@ export function EntryCard({ entry }: EntryCardProps) {
                 <Button 
                   variant="outline" 
                   size="sm"
-                  className="hover-scale hover:shadow-lg hover:border-primary/50 dark:hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all duration-300"
+                  className="hover-scale hover:shadow-lg hover:border-primary/50 dark:hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all duration-300"
                 >
                   <Edit className="h-4 w-4 mr-1" />
                   Edit

@@ -60,6 +60,66 @@
     --chart-4: 35 91% 50%;
     --chart-5: 50 95% 55%;
   }
+
+  .theme-forest {
+    --background: 222 47% 5%;
+    --foreground: 151 55% 70%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 210 40% 98%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 160 84% 39%;
+  }
+
+  .theme-ocean {
+    --background: 224 71% 4%;
+    --foreground: 199 70% 70%;
+    --card: 220 26% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 26% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 199 89% 48%;
+  }
+
+  .theme-sunset {
+    --background: 24 10% 4%;
+    --foreground: 27 80% 70%;
+    --card: 24 6% 10%;
+    --card-foreground: 60 9% 98%;
+    --popover: 24 6% 10%;
+    --popover-foreground: 60 9% 98%;
+    --primary: 27 96% 61%;
+    --primary-foreground: 24 10% 4%;
+    --secondary: 24 5% 18%;
+    --secondary-foreground: 60 9% 98%;
+    --muted: 24 5% 18%;
+    --muted-foreground: 24 5% 64%;
+    --accent: 27 96% 61%;
+    --accent-foreground: 24 10% 4%;
+    --border: 24 5% 18%;
+    --input: 24 5% 18%;
+    --ring: 27 96% 61%;
+  }
 }
 
 @layer base {
@@ -286,18 +346,18 @@ Kept only minimal scale effect for buttons
    NEW UTILITY CLASSES FOR LANDING PAGE
    ============================================ */
 
-/* AI Grid Background Pattern */
+/* AI Grid Background Pattern - Theme aware */
 .ai-grid-bg {
   background-image:
-    linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+    linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.4;
 }
 
-/* Floating Orb - Soft warm ambient glow */
+/* Floating Orb - Theme aware ambient glow */
 .floating-orb {
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.15), rgba(234, 179, 8, 0.1), transparent 70%);
+  background: radial-gradient(circle, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.1), transparent 70%);
   filter: blur(40px);
 }
 
@@ -319,7 +379,7 @@ Kept only minimal scale effect for buttons
   inset: 0;
   border-radius: 12px;
   padding: 1.5px;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.6) 0%, rgba(234, 179, 8, 0.6) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.6) 0%, hsl(var(--accent) / 0.6) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

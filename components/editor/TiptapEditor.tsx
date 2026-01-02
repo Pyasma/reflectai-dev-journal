@@ -90,13 +90,13 @@ export function TiptapEditor({
   return (
     <div className={`glass-card-light dark:glass-card rounded-lg overflow-hidden ${className}`}>
       {/* Toolbar with better contrast */}
-      <div className="flex flex-wrap items-center gap-1 border-b border-[rgba(249,115,22,0.2)] p-2 bg-muted/90 dark:bg-muted/70 backdrop-blur-sm">
+      <div className="flex flex-wrap items-center gap-1 border-b border-primary/20 p-2 bg-muted/90 dark:bg-muted/70 backdrop-blur-sm">
         <Button
           type="button"
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive('bold') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('bold') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <Bold className="h-4 w-4" />
         </Button>
@@ -105,7 +105,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive('italic') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('italic') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <Italic className="h-4 w-4" />
         </Button>
@@ -114,7 +114,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-          className={editor.isActive('heading', { level: 2 }) ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('heading', { level: 2 }) ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <Heading2 className="h-4 w-4" />
         </Button>
@@ -123,7 +123,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive('bulletList') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('bulletList') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <List className="h-4 w-4" />
         </Button>
@@ -132,7 +132,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive('orderedList') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('orderedList') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <ListOrdered className="h-4 w-4" />
         </Button>
@@ -141,7 +141,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={editor.isActive('blockquote') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('blockquote') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <Quote className="h-4 w-4" />
         </Button>
@@ -150,7 +150,7 @@ export function TiptapEditor({
           variant="ghost"
           size="sm"
           onClick={toggleLink}
-          className={editor.isActive('link') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_rgba(249,115,22,0.4)]' : 'hover:bg-primary/10'}
+          className={editor.isActive('link') ? 'bg-primary/20 dark:bg-primary/30 text-primary-foreground dark:shadow-[0_0_12px_hsl(var(--primary)/0.4)]' : 'hover:bg-primary/10'}
         >
           <LinkIcon className="h-4 w-4" />
         </Button>
