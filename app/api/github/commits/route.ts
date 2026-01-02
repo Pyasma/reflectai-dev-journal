@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
     const commits = await github.getRepositoryCommits(
       owner,
       repo,
-      50,
+      30,
       since || undefined
     );
 
