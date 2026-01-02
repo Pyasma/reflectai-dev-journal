@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Build context for Gemini
+    //Building Context for Gemini
     const systemPrompt = settings.custom_system_prompt || DEFAULT_SYSTEM_PROMPT;
     const commitsContext = commits
       .map(
